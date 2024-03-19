@@ -11,12 +11,47 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.Semantic.Abstractions", "src\Attribinter.Patterns.Semantic.Abstractions\Attribinter.Patterns.Semantic.Abstractions.csproj", "{6FFAC7C4-2EC4-4A89-BA29-061917C0F2B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.Semantic", "src\Attribinter.Patterns.Semantic\Attribinter.Patterns.Semantic.csproj", "{B1E0F2A1-2504-4EC2-9278-7BBE6566F0E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attribinter.Patterns.Semantic.DependencyInjection", "src\Attribinter.Patterns.Semantic.DependencyInjection\Attribinter.Patterns.Semantic.DependencyInjection.csproj", "{9A673ACF-FB38-4504-ABF2-87EAB987C225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attribinter.Patterns.Semantic.IntegrationTests", "tests\integration\Attribinter.Patterns.Semantic.IntegrationTests\Attribinter.Patterns.Semantic.IntegrationTests.csproj", "{AF57ED95-D3F8-4A1B-9273-B71EE854B236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attribinter.Patterns.Semantic.UnitTests", "tests\unit\Attribinter.Patterns.Semantic.UnitTests\Attribinter.Patterns.Semantic.UnitTests.csproj", "{8E170FD0-339E-4454-B6E2-7017AEEA133B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FFAC7C4-2EC4-4A89-BA29-061917C0F2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FFAC7C4-2EC4-4A89-BA29-061917C0F2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FFAC7C4-2EC4-4A89-BA29-061917C0F2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FFAC7C4-2EC4-4A89-BA29-061917C0F2B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E0F2A1-2504-4EC2-9278-7BBE6566F0E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E0F2A1-2504-4EC2-9278-7BBE6566F0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E0F2A1-2504-4EC2-9278-7BBE6566F0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E0F2A1-2504-4EC2-9278-7BBE6566F0E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A673ACF-FB38-4504-ABF2-87EAB987C225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A673ACF-FB38-4504-ABF2-87EAB987C225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A673ACF-FB38-4504-ABF2-87EAB987C225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A673ACF-FB38-4504-ABF2-87EAB987C225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF57ED95-D3F8-4A1B-9273-B71EE854B236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF57ED95-D3F8-4A1B-9273-B71EE854B236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF57ED95-D3F8-4A1B-9273-B71EE854B236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF57ED95-D3F8-4A1B-9273-B71EE854B236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E170FD0-339E-4454-B6E2-7017AEEA133B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E170FD0-339E-4454-B6E2-7017AEEA133B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E170FD0-339E-4454-B6E2-7017AEEA133B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E170FD0-339E-4454-B6E2-7017AEEA133B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85641F7F-4560-4376-8935-197822D76554}
 	EndGlobalSection
 EndGlobal
