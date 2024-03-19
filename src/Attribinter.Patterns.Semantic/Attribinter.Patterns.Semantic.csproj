@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>Attribinter.Patterns.Semantic</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Title>Attribinter.Patterns.Semantic</Title>
+        <Description>
+            Adds semantic patterns to Attribinter.
+        </Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Attribinter.Patterns.Semantic.Abstractions\Attribinter.Patterns.Semantic.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>
