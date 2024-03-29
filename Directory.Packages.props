@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <PackageVersion Include="Attribinter.Logo" Version="1.0.3" />
-        <PackageVersion Include="Attribinter.Patterns.Core" Version="8.0.0-alpha.20" />
+        <PackageVersion Include="Attribinter.Patterns.Core" Version="8.0.0-alpha.30" />
         <PackageVersion Include="Attribinter.Tests.Common" Version="8.0.0-alpha.11" />
     </ItemGroup>
     

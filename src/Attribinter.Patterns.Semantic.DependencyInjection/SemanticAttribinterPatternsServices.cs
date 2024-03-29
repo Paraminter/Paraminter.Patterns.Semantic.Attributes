@@ -17,34 +17,34 @@ public static class SemanticAttribinterPatternsServices
             throw new ArgumentNullException(nameof(services));
         }
 
-        services.AddSingleton<IArgumentPatternFactoryProvider, ArgumentPatternFactoryProvider>();
-        services.AddSingleton<IStringArgumentPatternFactoryProvider, StringArgumentPatternFactoryProvider>();
-        services.AddSingleton<IObjectArgumentPatternFactoryProvider, ObjectArgumentPatternFactoryProvider>();
-        services.AddSingleton<ITypeArgumentPatternFactoryProvider, TypeArgumentPatternFactoryProvider>();
-        services.AddSingleton<IArrayArgumentPatternFactoryProvider, ArrayArgumentPatternFactoryProvider>();
+        services.AddTransient<IArgumentPatternFactoryProvider, ArgumentPatternFactoryProvider>();
+        services.AddTransient<IStringArgumentPatternFactoryProvider, StringArgumentPatternFactoryProvider>();
+        services.AddTransient<IObjectArgumentPatternFactoryProvider, ObjectArgumentPatternFactoryProvider>();
+        services.AddTransient<ITypeArgumentPatternFactoryProvider, TypeArgumentPatternFactoryProvider>();
+        services.AddTransient<IArrayArgumentPatternFactoryProvider, ArrayArgumentPatternFactoryProvider>();
 
-        services.AddSingleton<IBoolArgumentPatternFactory, BoolArgumentPatternFactory>();
-        services.AddSingleton<IByteArgumentPatternFactory, ByteArgumentPatternFactory>();
-        services.AddSingleton<ISByteArgumentPatternFactory, SByteArgumentPatternFactory>();
-        services.AddSingleton<ICharArgumentPatternFactory, CharArgumentPatternFactory>();
-        services.AddSingleton<IShortArgumentPatternFactory, ShortArgumentPatternFactory>();
-        services.AddSingleton<IUShortArgumentPatternFactory, UShortArgumentPatternFactory>();
-        services.AddSingleton<IIntArgumentPatternFactory, IntArgumentPatternFactory>();
-        services.AddSingleton<IUIntArgumentPatternFactory, UIntArgumentPatternFactory>();
-        services.AddSingleton<ILongArgumentPatternFactory, LongArgumentPatternFactory>();
-        services.AddSingleton<IULongArgumentPatternFactory, ULongArgumentPatternFactory>();
-        services.AddSingleton<IFloatArgumentPatternFactory, FloatArgumentPatternFactory>();
-        services.AddSingleton<IDoubleArgumentPatternFactory, DoubleArgumentPatternFactory>();
-        services.AddSingleton<IEnumArgumentPatternFactory, EnumArgumentPatternFactory>();
+        services.AddTransient<IBoolArgumentPatternFactory, BoolArgumentPatternFactory>();
+        services.AddTransient<IByteArgumentPatternFactory, ByteArgumentPatternFactory>();
+        services.AddTransient<ISByteArgumentPatternFactory, SByteArgumentPatternFactory>();
+        services.AddTransient<ICharArgumentPatternFactory, CharArgumentPatternFactory>();
+        services.AddTransient<IShortArgumentPatternFactory, ShortArgumentPatternFactory>();
+        services.AddTransient<IUShortArgumentPatternFactory, UShortArgumentPatternFactory>();
+        services.AddTransient<IIntArgumentPatternFactory, IntArgumentPatternFactory>();
+        services.AddTransient<IUIntArgumentPatternFactory, UIntArgumentPatternFactory>();
+        services.AddTransient<ILongArgumentPatternFactory, LongArgumentPatternFactory>();
+        services.AddTransient<IULongArgumentPatternFactory, ULongArgumentPatternFactory>();
+        services.AddTransient<IFloatArgumentPatternFactory, FloatArgumentPatternFactory>();
+        services.AddTransient<IDoubleArgumentPatternFactory, DoubleArgumentPatternFactory>();
+        services.AddTransient<IEnumArgumentPatternFactory, EnumArgumentPatternFactory>();
 
-        services.AddSingleton<INonNullableStringArgumentPatternFactory, NonNullableStringArgumentPatternFactory>();
-        services.AddSingleton<INullableStringArgumentPatternFactory, NullableStringArgumentPatternFactory>();
-        services.AddSingleton<INonNullableObjectArgumentPatternFactory, NonNullableObjectArgumentPatternFactory>();
-        services.AddSingleton<INonNullableArrayArgumentPatternFactory, NonNullableArrayArgumentPatternFactory>();
-        services.AddSingleton<INullableObjectArgumentPatternFactory, NullableObjectArgumentPatternFactory>();
-        services.AddSingleton<INonNullableTypeArgumentPatternFactory, NonNullableTypeArgumentPatternFactory>();
-        services.AddSingleton<INullableTypeArgumentPatternFactory, NullableTypeArgumentPatternFactory>();
-        services.AddSingleton<INullableArrayArgumentPatternFactory, NullableArrayArgumentPatternFactory>();
+        services.AddTransient<INonNullableStringArgumentPatternFactory, NonNullableStringArgumentPatternFactory>();
+        services.AddTransient<INullableStringArgumentPatternFactory, NullableStringArgumentPatternFactory>();
+        services.AddTransient<INonNullableObjectArgumentPatternFactory, NonNullableObjectArgumentPatternFactory>();
+        services.AddTransient<INonNullableArrayArgumentPatternFactory, NonNullableArrayArgumentPatternFactory>();
+        services.AddTransient<INullableObjectArgumentPatternFactory, NullableObjectArgumentPatternFactory>();
+        services.AddTransient<INonNullableTypeArgumentPatternFactory, NonNullableTypeArgumentPatternFactory>();
+        services.AddTransient<INullableTypeArgumentPatternFactory, NullableTypeArgumentPatternFactory>();
+        services.AddTransient<INullableArrayArgumentPatternFactory, NullableArrayArgumentPatternFactory>();
 
         return services;
     }
