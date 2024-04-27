@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class Byte
 {
-    private static IByteArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.Byte;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.Byte, actual);
+        Assert.Same(Fixture.ByteMock.Object, result);
     }
+
+    private IByteArgumentPatternFactory Target() => Fixture.Sut.Byte;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

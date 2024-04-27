@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class Nullable
 {
-    private static INullableStringArgumentPatternFactory Target(IStringArgumentPatternFactoryProvider provider) => provider.Nullable;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.Nullable, actual);
+        Assert.Same(Fixture.NullableMock.Object, result);
     }
+
+    private INullableStringArgumentPatternFactory Target() => Fixture.Sut.Nullable;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

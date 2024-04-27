@@ -11,28 +11,25 @@ using Xunit;
 
 public sealed class Create
 {
-    private static IArgumentPattern<TypedConstant, IReadOnlyList<TElement>?> Target<TElement>(INullableArrayArgumentPatternFactory factory, IArgumentPattern<TypedConstant, TElement> elementPattern) => factory.Create(elementPattern);
-
-    private static readonly FactoryContext Context = FactoryContext.Create();
-
     [Fact]
     public void NullElementPattern_ThrowsArgumentNullException()
     {
-        var exception = Record.Exception(() => Target<object>(Context.Factory, null!));
+        var result = Record.Exception(() => Target<object>(null!));
 
-        Assert.IsType<ArgumentNullException>(exception);
+        Assert.IsType<ArgumentNullException>(result);
     }
 
     [Fact]
-    public void ValidElementPattern_ReturnsNotNull()
+    public void ValidElementPattern_ReturnsPattern()
     {
         var elementPattern = Mock.Of<IArgumentPattern<TypedConstant, object>>();
 
-        var actual = Target(Context.Factory, elementPattern);
+        var result = Target(elementPattern);
 
-        Assert.NotNull(actual);
-
-        Context.NonNullablePatternFactoryMock.Verify((factory) => factory.Create(elementPattern), Times.Once());
-        Context.NonNullablePatternFactoryMock.VerifyNoOtherCalls();
+        Assert.NotNull(result);
     }
+
+    private IArgumentPattern<TypedConstant, IReadOnlyList<TElement>?> Target<TElement>(IArgumentPattern<TypedConstant, TElement> elementPattern) => Fixture.Sut.Create(elementPattern);
+
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }

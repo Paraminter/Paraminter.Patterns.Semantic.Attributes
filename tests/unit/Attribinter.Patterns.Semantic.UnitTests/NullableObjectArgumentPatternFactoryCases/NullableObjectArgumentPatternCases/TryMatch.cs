@@ -5,14 +5,12 @@ using Microsoft.CodeAnalysis;
 using Moq;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 using Xunit;
 
 public sealed class TryMatch
 {
-    private static ArgumentPatternMatchResult<object?> Target(IArgumentPattern<TypedConstant, object?> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
-    private readonly PatternContext Context = PatternContext.Create();
     [Fact]
     public void Error_Unsuccessful()
     {
@@ -21,7 +19,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Unsuccessful(source, VerifyNoInvokations);
+        Unsuccessful(source, NoSetup);
     }
 
     [Fact]
@@ -32,7 +30,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful(null, source, VerifyNoInvokations);
+        Successful(null, source, NoSetup);
     }
 
     [Fact]
@@ -43,7 +41,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful(null, source, VerifyNoInvokations);
+        Successful(null, source, NoSetup);
     }
 
     [Fact]
@@ -51,58 +49,57 @@ public sealed class TryMatch
     {
         var result = Mock.Of<object>();
 
-        Context.NonNullablePatternMock.Setup(static (pattern) => pattern.TryMatch(It.IsAny<TypedConstant>())).Returns(ArgumentPatternMatchResult.CreateSuccessful(result));
-
         var source = """
             [Attribinter.NullableObject(42)]
             public class Foo { }
             """;
 
-        Successful(result, source, VerifyInvokation);
+        Successful(result, source, setup);
+
+        void setup(TypedConstant argument) => Fixture.NonNullablePatternMock.Setup((pattern) => pattern.TryMatch(argument)).Returns(ArgumentPatternMatchResult.CreateSuccessful(result));
     }
 
     [Fact]
     public void NotNull_NonNullablePatternNotMatching_Unsuccessful()
     {
-        Context.NonNullablePatternMock.Setup(static (pattern) => pattern.TryMatch(It.IsAny<TypedConstant>())).Returns(ArgumentPatternMatchResult.CreateUnsuccessful<object>());
-
         var source = """
             [Attribinter.NullableObject(42)]
             public class Foo { }
             """;
 
-        Unsuccessful(source, VerifyInvokation);
+        Unsuccessful(source, setup);
+
+        void setup(TypedConstant argument) => Fixture.NonNullablePatternMock.Setup((pattern) => pattern.TryMatch(argument)).Returns(ArgumentPatternMatchResult.CreateUnsuccessful<object>());
     }
 
-    private void VerifyInvokation(TypedConstant argument)
-    {
-        Context.NonNullablePatternMock.Verify((pattern) => pattern.TryMatch(argument), Times.Once());
-        Context.NonNullablePatternMock.VerifyNoOtherCalls();
-    }
+    [SuppressMessage("Critical Code Smell", "S1186: Methods should not be empty", Justification = "Implements pseudo-interface.")]
+    private static void NoSetup(TypedConstant argument) { }
 
-    private void VerifyNoInvokations(TypedConstant argument) => Context.NonNullablePatternMock.VerifyNoOtherCalls();
+    private ArgumentPatternMatchResult<object?> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+
+    private readonly IPatternFixture Fixture = PatternFixtureFactory.Create();
 
     [AssertionMethod]
-    private void Successful(object? expected, string source, Action<TypedConstant> verifyDelegate)
+    private void Successful(object? expected, string source, Action<TypedConstant> setupDelegate)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        setupDelegate(argument);
+
+        var result = Target(argument);
 
         Assert.Equal(expected, result.GetMatchedArgument());
-
-        verifyDelegate(argument);
     }
 
     [AssertionMethod]
-    private void Unsuccessful(string source, Action<TypedConstant> verifyDelegate)
+    private void Unsuccessful(string source, Action<TypedConstant> setupDelegate)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        setupDelegate(argument);
+
+        var result = Target(argument);
 
         Assert.False(result.Successful);
-
-        verifyDelegate(argument);
     }
 }

@@ -6,15 +6,15 @@ using Xunit;
 
 public sealed class Create
 {
-    private static IArgumentPattern<TypedConstant, ITypeSymbol> Target(INonNullableTypeArgumentPatternFactory factory) => factory.Create();
-
-    private static readonly FactoryContext Context = FactoryContext.Create();
-
     [Fact]
-    public void ReturnsNotNull()
+    public void RetunsPattern()
     {
-        var actual = Target(Context.Factory);
+        var result = Target();
 
-        Assert.NotNull(actual);
+        Assert.NotNull(result);
     }
+
+    private IArgumentPattern<TypedConstant, ITypeSymbol> Target() => Fixture.Sut.Create();
+
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }

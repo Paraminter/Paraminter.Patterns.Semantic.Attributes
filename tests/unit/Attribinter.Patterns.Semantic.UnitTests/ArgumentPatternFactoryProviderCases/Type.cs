@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class Type
 {
-    private static ITypeArgumentPatternFactoryProvider Target(IArgumentPatternFactoryProvider provider) => provider.Type;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.Type, actual);
+        Assert.Same(Fixture.TypeMock.Object, result);
     }
+
+    private ITypeArgumentPatternFactoryProvider Target() => Fixture.Sut.Type;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

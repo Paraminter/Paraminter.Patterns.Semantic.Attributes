@@ -8,15 +8,15 @@ using Xunit;
 
 public sealed class Create
 {
-    private static IArgumentPattern<TypedConstant, StringComparison> Target(IEnumArgumentPatternFactory factory) => factory.Create<StringComparison>();
-
-    private static readonly FactoryContext Context = FactoryContext.Create();
-
     [Fact]
-    public void ReturnsNotNull()
+    public void ReturnsPattern()
     {
-        var actual = Target(Context.Factory);
+        var result = Target();
 
-        Assert.NotNull(actual);
+        Assert.NotNull(result);
     }
+
+    private IArgumentPattern<TypedConstant, StringComparison> Target() => Fixture.Sut.Create<StringComparison>();
+
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }

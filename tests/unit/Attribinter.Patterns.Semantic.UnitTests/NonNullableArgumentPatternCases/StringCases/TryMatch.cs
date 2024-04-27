@@ -6,10 +6,6 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static ArgumentPatternMatchResult<string> Target(IArgumentPattern<TypedConstant, string> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
-    private static readonly PatternContext Context = PatternContext.Create();
-
     [Fact]
     public void StringAttribute_NonNull_Successful()
     {
@@ -65,22 +61,26 @@ public sealed class TryMatch
         Unsuccessful(source);
     }
 
+    private ArgumentPatternMatchResult<string> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+
+    private readonly IPatternFixture Fixture = PatternFixtureFactory.Create();
+
     [AssertionMethod]
-    private static void Successful(string expected, string source)
+    private void Successful(string expected, string source)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.Equal(expected, result.GetMatchedArgument());
     }
 
     [AssertionMethod]
-    private static void Unsuccessful(string source)
+    private void Unsuccessful(string source)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.False(result.Successful);
     }

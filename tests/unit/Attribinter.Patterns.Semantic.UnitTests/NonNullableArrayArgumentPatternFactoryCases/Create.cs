@@ -11,23 +11,23 @@ using Xunit;
 
 public sealed class Create
 {
-    private static IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> Target<TElement>(INonNullableArrayArgumentPatternFactory factory, IArgumentPattern<TypedConstant, TElement> elementPattern) => factory.Create(elementPattern);
-
-    private static readonly FactoryContext Context = FactoryContext.Create();
-
     [Fact]
     public void NullElementPattern_ThrowsArgumentNullException()
     {
-        var exception = Record.Exception(() => Target<object>(Context.Factory, null!));
+        var result = Record.Exception(() => Target<object>(null!));
 
-        Assert.IsType<ArgumentNullException>(exception);
+        Assert.IsType<ArgumentNullException>(result);
     }
 
     [Fact]
-    public void ValidElementPattern_ReturnsNotNull()
+    public void ValidElementPattern_ReturnsPattern()
     {
-        var actual = Target(Context.Factory, Mock.Of<IArgumentPattern<TypedConstant, object>>());
+        var result = Target(Mock.Of<IArgumentPattern<TypedConstant, object>>());
 
-        Assert.NotNull(actual);
+        Assert.NotNull(result);
     }
+
+    private IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> Target<TElement>(IArgumentPattern<TypedConstant, TElement> elementPattern) => Fixture.Sut.Create(elementPattern);
+
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }

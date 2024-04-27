@@ -2,14 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>Attribinter.Patterns.Semantic</RootNamespace>
-    </PropertyGroup>
 
-    <PropertyGroup>
+        <RootNamespace>Attribinter.Patterns.Semantic</RootNamespace>
+
         <Title>Attribinter.Patterns.Semantic</Title>
-        <Description>
-            Adds semantic patterns to Attribinter.
-        </Description>
+        <Description>Adds semantic patterns to Attribinter.</Description>
     </PropertyGroup>
 
     <ItemGroup>

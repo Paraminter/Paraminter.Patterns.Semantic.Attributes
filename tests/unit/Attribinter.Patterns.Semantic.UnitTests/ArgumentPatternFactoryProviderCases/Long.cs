@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class Long
 {
-    private static ILongArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.Long;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.Long, actual);
+        Assert.Same(Fixture.LongMock.Object, result);
     }
+
+    private ILongArgumentPatternFactory Target() => Fixture.Sut.Long;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

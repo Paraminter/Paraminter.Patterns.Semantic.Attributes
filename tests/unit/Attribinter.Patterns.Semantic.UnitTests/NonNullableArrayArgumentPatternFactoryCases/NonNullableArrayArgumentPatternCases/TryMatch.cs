@@ -12,8 +12,6 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static ArgumentPatternMatchResult<IReadOnlyList<TElement>> Target<TElement>(IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
     [Fact]
     public void Error_Unsuccessful()
     {
@@ -22,7 +20,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Unsuccessful<object>(source, NoSetup<object>, VerifyNoInvokations<object>);
+        Unsuccessful<object>(source, NoSetup<object>);
     }
 
     [Fact]
@@ -33,7 +31,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Unsuccessful<object>(source, NoSetup<object>, VerifyNoInvokations<object>);
+        Unsuccessful<object>(source, NoSetup<object>);
     }
 
     [Fact]
@@ -44,7 +42,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful(Array.Empty<object>(), source, NoSetup<object>, VerifyNoInvokations<object>);
+        Successful(Array.Empty<object>(), source, NoSetup<object>);
     }
 
     [Fact]
@@ -61,7 +59,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful(new[] { element1, element2 }, source, Setup(new[] { matchResult1, matchResult2 }), VerifyInvoked<object>(2));
+        Successful(new[] { element1, element2 }, source, Setup(new[] { matchResult1, matchResult2 }));
     }
 
     [Fact]
@@ -75,7 +73,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Unsuccessful(source, Setup(new[] { matchResult1, matchResult2 }), VerifyInvoked<object>(2));
+        Unsuccessful(source, Setup(new[] { matchResult1, matchResult2 }));
     }
 
     [Fact]
@@ -86,7 +84,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Unsuccessful<object>(source, NoSetup<object>, VerifyNoInvokations<object>);
+        Unsuccessful<object>(source, NoSetup<object>);
     }
 
     [Fact]
@@ -103,7 +101,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful(new[] { element1, element2 }, source, Setup(new[] { matchResult1, matchResult2 }), VerifyInvoked<object>(2));
+        Successful(new[] { element1, element2 }, source, Setup(new[] { matchResult1, matchResult2 }));
     }
 
     [Fact]
@@ -117,63 +115,50 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Unsuccessful(source, Setup(new[] { matchResult1, matchResult2 }), VerifyInvoked<object>(2));
+        Unsuccessful(source, Setup(new[] { matchResult1, matchResult2 }));
     }
 
     [SuppressMessage("Critical Code Smell", "S1186: Methods should not be empty", Justification = "Implements pseudo-interface.")]
-    private static void NoSetup<TElement>(PatternContext<TElement> context, TypedConstant argument) { }
-    private static Action<PatternContext<TElement>, TypedConstant> Setup<TElement>(IEnumerable<ArgumentPatternMatchResult<TElement>> matchResults) => (context, argument) =>
+    private static void NoSetup<TElement>(IPatternFixture<TElement> fixture, TypedConstant argument) { }
+    private static Action<IPatternFixture<TElement>, TypedConstant> Setup<TElement>(IEnumerable<ArgumentPatternMatchResult<TElement>> matchResults) => (fixture, argument) =>
     {
         var i = 0;
 
         foreach (var matchResult in matchResults)
         {
-            context.ElementPatternMock.Setup((pattern) => pattern.TryMatch(argument.Values[i])).Returns(matchResult);
+            fixture.ElementPatternMock.Setup((pattern) => pattern.TryMatch(argument.Values[i])).Returns(matchResult);
 
             i += 1;
         }
     };
 
-    private static void VerifyNoInvokations<TElement>(PatternContext<TElement> context, TypedConstant argument) => context.ElementPatternMock.VerifyNoOtherCalls();
-    private static Action<PatternContext<TElement>, TypedConstant> VerifyInvoked<TElement>(int argumentCount) => (context, argument) =>
-    {
-        for (var i = 0; i < argumentCount; i++)
-        {
-            context.ElementPatternMock.Verify((pattern) => pattern.TryMatch(argument.Values[i]), Times.Once());
-        }
-
-        context.ElementPatternMock.VerifyNoOtherCalls();
-    };
+    private static ArgumentPatternMatchResult<IReadOnlyList<TElement>> Target<TElement>(IPatternFixture<TElement> fixture, TypedConstant argument) => fixture.Sut.TryMatch(argument);
 
     [AssertionMethod]
-    private static void Successful<TElement>(IReadOnlyList<TElement> expected, string source, Action<PatternContext<TElement>, TypedConstant> setupDelegate, Action<PatternContext<TElement>, TypedConstant> verifyDelegate)
+    private static void Successful<TElement>(IReadOnlyList<TElement> expected, string source, Action<IPatternFixture<TElement>, TypedConstant> setupDelegate)
     {
-        var context = PatternContext<TElement>.Create();
+        var fixture = PatternFixtureFactory.Create<TElement>();
 
         var argument = TypedConstantFactory.Create(source);
 
-        setupDelegate(context, argument);
+        setupDelegate(fixture, argument);
 
-        var result = Target(context.Pattern, argument);
+        var result = Target(fixture, argument);
 
         Assert.Equal(expected, result.GetMatchedArgument());
-
-        verifyDelegate(context, argument);
     }
 
     [AssertionMethod]
-    private static void Unsuccessful<TElement>(string source, Action<PatternContext<TElement>, TypedConstant> setupDelegate, Action<PatternContext<TElement>, TypedConstant> verifyDelegate)
+    private static void Unsuccessful<TElement>(string source, Action<IPatternFixture<TElement>, TypedConstant> setupDelegate)
     {
-        var context = PatternContext<TElement>.Create();
+        var fixture = PatternFixtureFactory.Create<TElement>();
 
         var argument = TypedConstantFactory.Create(source);
 
-        setupDelegate(context, argument);
+        setupDelegate(fixture, argument);
 
-        var result = Target(context.Pattern, argument);
+        var result = Target(fixture, argument);
 
         Assert.False(result.Successful);
-
-        verifyDelegate(context, argument);
     }
 }

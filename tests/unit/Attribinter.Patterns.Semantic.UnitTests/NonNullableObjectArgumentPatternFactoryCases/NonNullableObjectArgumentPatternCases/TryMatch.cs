@@ -8,12 +8,6 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static ArgumentPatternMatchResult<object> Target(IArgumentPattern<TypedConstant, object> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
-    private static readonly PatternContext Context = PatternContext.Create();
-
-    private static readonly object ArrayArgument = new[] { 42 };
-
     [Fact]
     public void Error_Unsuccessful()
     {
@@ -91,22 +85,28 @@ public sealed class TryMatch
         Successful(ArrayArgument, source);
     }
 
+    private static readonly object ArrayArgument = new[] { 42 };
+
+    private ArgumentPatternMatchResult<object> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+
+    private readonly IPatternFixture Fixture = PatternFixtureFactory.Create();
+
     [AssertionMethod]
-    private static void Successful(object expected, string source)
+    private void Successful(object expected, string source)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.Equal(expected, result.GetMatchedArgument());
     }
 
     [AssertionMethod]
-    private static void Unsuccessful(string source)
+    private void Unsuccessful(string source)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.False(result.Successful);
     }

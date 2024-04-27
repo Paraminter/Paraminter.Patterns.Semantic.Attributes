@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class NonNullable
 {
-    private static INonNullableTypeArgumentPatternFactory Target(ITypeArgumentPatternFactoryProvider provider) => provider.NonNullable;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.NonNullable, actual);
+        Assert.Same(Fixture.NonNullableMock.Object, result);
     }
+
+    private INonNullableTypeArgumentPatternFactory Target() => Fixture.Sut.NonNullable;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }
