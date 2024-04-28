@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class Bool
 {
-    private static IBoolArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.Bool;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.Bool, actual);
+        Assert.Same(Fixture.BoolMock.Object, result);
     }
+
+    private IBoolArgumentPatternFactory Target() => Fixture.Sut.Bool;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

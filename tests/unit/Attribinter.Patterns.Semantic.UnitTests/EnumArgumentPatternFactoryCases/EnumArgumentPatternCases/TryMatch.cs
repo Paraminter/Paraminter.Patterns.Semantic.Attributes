@@ -8,8 +8,6 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static ArgumentPatternMatchResult<TEnum> Target<TEnum>(IArgumentPattern<TypedConstant, TEnum> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
     [Fact]
     public void Error_Unsuccessful()
     {
@@ -54,14 +52,17 @@ public sealed class TryMatch
         Unsuccessful<IntEnum>(source);
     }
 
+    private static ArgumentPatternMatchResult<TEnum> Target<TEnum>(IPatternFixture<TEnum> fixture, TypedConstant argument) => fixture.Sut.TryMatch(argument);
+
     [AssertionMethod]
-    private static void Unsuccessful<TEnum>(string source) where TEnum : Enum
+    private static void Unsuccessful<TEnum>(string source)
+        where TEnum : Enum
     {
-        var context = PatternContext<TEnum>.Create();
+        var fixture = PatternFixtureFactory.Create<TEnum>();
 
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(context.Pattern, argument);
+        var result = Target(fixture, argument);
 
         Assert.False(result.Successful);
     }

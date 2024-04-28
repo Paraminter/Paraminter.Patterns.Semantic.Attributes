@@ -6,10 +6,6 @@ using Xunit;
 
 public sealed class TryMatch_LongEnum
 {
-    private static ArgumentPatternMatchResult<LongEnum> Target(IArgumentPattern<TypedConstant, LongEnum> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
-    private static readonly PatternContext<LongEnum> Context = PatternContext<LongEnum>.Create();
-
     [Fact]
     public void LongEnumAttribute_Successful()
     {
@@ -32,12 +28,16 @@ public sealed class TryMatch_LongEnum
         Successful(LongEnum.None, source);
     }
 
+    private ArgumentPatternMatchResult<LongEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+
+    private readonly IPatternFixture<LongEnum> Fixture = PatternFixtureFactory.Create<LongEnum>();
+
     [AssertionMethod]
-    private static void Successful(LongEnum expected, string source)
+    private void Successful(LongEnum expected, string source)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.Equal(expected, result.GetMatchedArgument());
     }

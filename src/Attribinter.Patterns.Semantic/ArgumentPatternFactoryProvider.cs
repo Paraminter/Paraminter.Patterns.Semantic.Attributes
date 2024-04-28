@@ -42,11 +42,24 @@ public sealed class ArgumentPatternFactoryProvider : IArgumentPatternFactoryProv
     /// <param name="objectArgumentPatternFactoryProvider">Provides factories handling creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching <see cref="object"/> arguments.</param>
     /// <param name="typeArgumentPatternFactoryProvider">Provides factories handling creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching <see cref="System.Type"/> arguments.</param>
     /// <param name="arrayArgumentPatternFactoryProvider">Provides factories handling creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching array-valued arguments.</param>
-    public ArgumentPatternFactoryProvider(IBoolArgumentPatternFactory boolArgumentPatternFactory, IByteArgumentPatternFactory byteArgumentPatternFactory, ISByteArgumentPatternFactory sbyteArgumentPatternFactory,
-        ICharArgumentPatternFactory charArgumentPatternFactory, IShortArgumentPatternFactory shortArgumentPatternFactory, IUShortArgumentPatternFactory ushortArgumentPatternFactory, IIntArgumentPatternFactory intArgumentPatternFactory,
-        IUIntArgumentPatternFactory uintArgumentPatternFactory, ILongArgumentPatternFactory longArgumentPatternFactory, IULongArgumentPatternFactory ulongArgumentPatternFactory, IFloatArgumentPatternFactory floatArgumentPatternFactory,
-        IDoubleArgumentPatternFactory doubleArgumentPatternFactory, IEnumArgumentPatternFactory enumArgumentPatternFactory, IStringArgumentPatternFactoryProvider stringArgumentPatternFactoryProvider, IObjectArgumentPatternFactoryProvider objectArgumentPatternFactoryProvider,
-        ITypeArgumentPatternFactoryProvider typeArgumentPatternFactoryProvider, IArrayArgumentPatternFactoryProvider arrayArgumentPatternFactoryProvider)
+    public ArgumentPatternFactoryProvider(
+        IBoolArgumentPatternFactory boolArgumentPatternFactory,
+        IByteArgumentPatternFactory byteArgumentPatternFactory,
+        ISByteArgumentPatternFactory sbyteArgumentPatternFactory,
+        ICharArgumentPatternFactory charArgumentPatternFactory,
+        IShortArgumentPatternFactory shortArgumentPatternFactory,
+        IUShortArgumentPatternFactory ushortArgumentPatternFactory,
+        IIntArgumentPatternFactory intArgumentPatternFactory,
+        IUIntArgumentPatternFactory uintArgumentPatternFactory,
+        ILongArgumentPatternFactory longArgumentPatternFactory,
+        IULongArgumentPatternFactory ulongArgumentPatternFactory,
+        IFloatArgumentPatternFactory floatArgumentPatternFactory,
+        IDoubleArgumentPatternFactory doubleArgumentPatternFactory,
+        IEnumArgumentPatternFactory enumArgumentPatternFactory,
+        IStringArgumentPatternFactoryProvider stringArgumentPatternFactoryProvider,
+        IObjectArgumentPatternFactoryProvider objectArgumentPatternFactoryProvider,
+        ITypeArgumentPatternFactoryProvider typeArgumentPatternFactoryProvider,
+        IArrayArgumentPatternFactoryProvider arrayArgumentPatternFactoryProvider)
     {
         Bool = boolArgumentPatternFactory ?? throw new ArgumentNullException(nameof(boolArgumentPatternFactory));
         Byte = byteArgumentPatternFactory ?? throw new ArgumentNullException(nameof(byteArgumentPatternFactory));

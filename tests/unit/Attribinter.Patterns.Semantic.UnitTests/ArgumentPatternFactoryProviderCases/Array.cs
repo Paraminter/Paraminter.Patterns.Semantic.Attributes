@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class Array
 {
-    private static IArrayArgumentPatternFactoryProvider Target(IArgumentPatternFactoryProvider provider) => provider.Array;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.Array, actual);
+        Assert.Same(Fixture.ArrayMock.Object, result);
     }
+
+    private IArrayArgumentPatternFactoryProvider Target() => Fixture.Sut.Array;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

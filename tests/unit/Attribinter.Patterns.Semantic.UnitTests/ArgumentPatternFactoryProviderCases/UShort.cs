@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class UShort
 {
-    private static IUShortArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.UShort;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.UShort, actual);
+        Assert.Same(Fixture.UShortMock.Object, result);
     }
+
+    private IUShortArgumentPatternFactory Target() => Fixture.Sut.UShort;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

@@ -2,5 +2,5 @@
 
 public enum IntEnum
 {
-    None = 0
+    None = 0,
 }

@@ -8,10 +8,6 @@ using Xunit;
 
 public sealed class TryMatch
 {
-    private static ArgumentPatternMatchResult<ITypeSymbol> Target(IArgumentPattern<TypedConstant, ITypeSymbol> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
-    private static readonly PatternContext Context = PatternContext.Create();
-
     [Fact]
     public void TypeAttribute_NonNull_Successful()
     {
@@ -69,8 +65,12 @@ public sealed class TryMatch
 
     private static ITypeSymbol IntType(Compilation compilation) => compilation.GetSpecialType(SpecialType.System_Int32);
 
+    private ArgumentPatternMatchResult<ITypeSymbol> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+
+    private readonly IPatternFixture Fixture = PatternFixtureFactory.Create();
+
     [AssertionMethod]
-    private static void Successful(Func<Compilation, ITypeSymbol> expectedDelegate, string source)
+    private void Successful(Func<Compilation, ITypeSymbol> expectedDelegate, string source)
     {
         var compilation = CSharpCompilationFactory.GetCompilation(source);
 
@@ -78,17 +78,17 @@ public sealed class TryMatch
 
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.Equal(expected, result.GetMatchedArgument());
     }
 
     [AssertionMethod]
-    private static void Unsuccessful(string source)
+    private void Unsuccessful(string source)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.False(result.Successful);
     }

@@ -6,10 +6,6 @@ using Xunit;
 
 public sealed class TryMatch_ByteEnum
 {
-    private static ArgumentPatternMatchResult<ByteEnum> Target(IArgumentPattern<TypedConstant, ByteEnum> pattern, TypedConstant argument) => pattern.TryMatch(argument);
-
-    private static readonly PatternContext<ByteEnum> Context = PatternContext<ByteEnum>.Create();
-
     [Fact]
     public void ByteEnumAttribute_Successful()
     {
@@ -32,12 +28,16 @@ public sealed class TryMatch_ByteEnum
         Successful(ByteEnum.None, source);
     }
 
+    private ArgumentPatternMatchResult<ByteEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+
+    private readonly IPatternFixture<ByteEnum> Fixture = PatternFixtureFactory.Create<ByteEnum>();
+
     [AssertionMethod]
-    private static void Successful(ByteEnum expected, string source)
+    private void Successful(ByteEnum expected, string source)
     {
         var argument = TypedConstantFactory.Create(source);
 
-        var result = Target(Context.Pattern, argument);
+        var result = Target(argument);
 
         Assert.Equal(expected, result.GetMatchedArgument());
     }

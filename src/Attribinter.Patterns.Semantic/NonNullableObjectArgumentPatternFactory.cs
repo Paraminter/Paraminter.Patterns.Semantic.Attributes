@@ -40,7 +40,7 @@ public sealed class NonNullableObjectArgumentPatternFactory : INonNullableObject
             return CreateSuccessful(value);
         }
 
-        private static (bool, object?) TryExtractValue(TypedConstant value)
+        private static (bool Success, object? Value) TryExtractValue(TypedConstant value)
         {
             if (value.Kind is TypedConstantKind.Error)
             {

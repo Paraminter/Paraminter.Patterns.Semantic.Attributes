@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class Double
 {
-    private static IDoubleArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.Double;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.Double, actual);
+        Assert.Same(Fixture.DoubleMock.Object, result);
     }
+
+    private IDoubleArgumentPatternFactory Target() => Fixture.Sut.Double;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

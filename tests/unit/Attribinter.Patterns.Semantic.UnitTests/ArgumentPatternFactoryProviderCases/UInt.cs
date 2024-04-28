@@ -4,15 +4,15 @@ using Xunit;
 
 public sealed class UInt
 {
-    private static IUIntArgumentPatternFactory Target(IArgumentPatternFactoryProvider provider) => provider.UInt;
-
-    private static readonly ProviderContext Context = ProviderContext.Create();
-
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
-        var actual = Target(Context.Provider);
+        var result = Target();
 
-        Assert.Same(Context.UInt, actual);
+        Assert.Same(Fixture.UIntMock.Object, result);
     }
+
+    private IUIntArgumentPatternFactory Target() => Fixture.Sut.UInt;
+
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }
