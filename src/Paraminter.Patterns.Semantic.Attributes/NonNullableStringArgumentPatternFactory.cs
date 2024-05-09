@@ -1,0 +1,20 @@
+﻿namespace Paraminter.Patterns.Semantic.Attributes;
+
+using Microsoft.CodeAnalysis;
+
+using System;
+
+/// <inheritdoc cref="INonNullableStringArgumentPatternFactory"/>
+public sealed class NonNullableStringArgumentPatternFactory : INonNullableStringArgumentPatternFactory
+{
+    private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
+
+    /// <summary>Instantiates a <see cref="NonNullableStringArgumentPatternFactory"/>, handling creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching non-nullable <see cref="string"/> arguments.</summary>
+    /// <param name="matchResultFactoryProvider">Provides factories of <see cref="IArgumentPatternMatchResult{TMatchedArgument}"/>.</param>
+    public NonNullableStringArgumentPatternFactory(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    {
+        MatchResultFactoryProvider = matchResultFactoryProvider ?? throw new ArgumentNullException(nameof(matchResultFactoryProvider));
+    }
+
+    IArgumentPattern<TypedConstant, string> INonNullableStringArgumentPatternFactory.Create() => new NonNullableArgumentPattern<string>(MatchResultFactoryProvider);
+}

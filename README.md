@@ -1,13 +1,5 @@
-# Attribinter.Patterns.Semantic
+# Paraminter.Patterns.Semantic
 
-Adds semantic patterns to `Attribinter`.
+Adds patterns for semantic attribute arguments to `Paraminter`.
 
-See [Attribinter](https://www.github.com/Attribinter/Attribinter) for more information.
-
-## NuGet
-
-The repository publishes the following NuGet packages:
-
-* [Attribinter.Patterns.Semantic](https://www.nuget.org/packages/Attribinter.Patterns.Semantic/)
-* [Attribinter.Patterns.Semantic.Abstractions](https://www.nuget.org/packages/Attribinter.Patterns.Semantic.Abstractions/)
-* [Attribinter.Patterns.Semantic.DependencyInjection](https://www.nuget.org/packages/Attribinter.Patterns.Semantic.DependencyInjection/)
+See [Paraminter](https://www.github.com/Paraminter/Paraminter) for more information.

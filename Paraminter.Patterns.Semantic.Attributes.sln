@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9BF65FC-2CC4-487C-BD5D-B32A9E88AF04}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		tests\.editorconfig = tests\.editorconfig
+		Directory.Build.props = Directory.Build.props
+		src\Directory.Build.props = src\Directory.Build.props
+		tests\Directory.Build.props = tests\Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paraminter.Patterns.Semantic.Attributes.Abstractions", "src\Paraminter.Patterns.Semantic.Attributes.Abstractions\Paraminter.Patterns.Semantic.Attributes.Abstractions.csproj", "{ADFB31B2-2B4C-4E53-AC3C-B8282BB5CDA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paraminter.Patterns.Semantic.Attributes", "src\Paraminter.Patterns.Semantic.Attributes\Paraminter.Patterns.Semantic.Attributes.csproj", "{F3801EC8-6496-484E-8A02-80026FCDDA27}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paraminter.Patterns.Semantic.Attributes.DependencyInjection", "src\Paraminter.Patterns.Semantic.Attributes.DependencyInjection\Paraminter.Patterns.Semantic.Attributes.DependencyInjection.csproj", "{736A8461-D91C-4F27-8E99-57518D361CE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paraminter.Patterns.Semantic.Attributes.IntegrationTests", "tests\integration\Paraminter.Patterns.Semantic.Attributes.IntegrationTests\Paraminter.Patterns.Semantic.Attributes.IntegrationTests.csproj", "{0AA76CCA-CCD2-4598-AD44-0BCA0D347F00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paraminter.Patterns.Semantic.Attributes.UnitTests", "tests\unit\Paraminter.Patterns.Semantic.Attributes.UnitTests\Paraminter.Patterns.Semantic.Attributes.UnitTests.csproj", "{32677C91-8034-427D-901D-685B88E2E56D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADFB31B2-2B4C-4E53-AC3C-B8282BB5CDA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADFB31B2-2B4C-4E53-AC3C-B8282BB5CDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADFB31B2-2B4C-4E53-AC3C-B8282BB5CDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADFB31B2-2B4C-4E53-AC3C-B8282BB5CDA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3801EC8-6496-484E-8A02-80026FCDDA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3801EC8-6496-484E-8A02-80026FCDDA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3801EC8-6496-484E-8A02-80026FCDDA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3801EC8-6496-484E-8A02-80026FCDDA27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{736A8461-D91C-4F27-8E99-57518D361CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{736A8461-D91C-4F27-8E99-57518D361CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{736A8461-D91C-4F27-8E99-57518D361CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{736A8461-D91C-4F27-8E99-57518D361CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA76CCA-CCD2-4598-AD44-0BCA0D347F00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA76CCA-CCD2-4598-AD44-0BCA0D347F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA76CCA-CCD2-4598-AD44-0BCA0D347F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA76CCA-CCD2-4598-AD44-0BCA0D347F00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32677C91-8034-427D-901D-685B88E2E56D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32677C91-8034-427D-901D-685B88E2E56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32677C91-8034-427D-901D-685B88E2E56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32677C91-8034-427D-901D-685B88E2E56D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85641F7F-4560-4376-8935-197822D76554}
+	EndGlobalSection
+EndGlobal
