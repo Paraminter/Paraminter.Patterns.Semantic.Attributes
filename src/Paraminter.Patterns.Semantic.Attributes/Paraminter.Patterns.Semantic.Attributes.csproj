@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+
+        <RootNamespace>Paraminter.Patterns.Semantic.Attributes</RootNamespace>
+
+        <Title>Paraminter.Patterns.Semantic.Attributes</Title>
+        <Description>Adds patterns for semantic attribute arguments to Paraminter.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Paraminter.Patterns.Abstractions" />
+        
+        <ProjectReference Include="..\Paraminter.Patterns.Semantic.Attributes.Abstractions\Paraminter.Patterns.Semantic.Attributes.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>
