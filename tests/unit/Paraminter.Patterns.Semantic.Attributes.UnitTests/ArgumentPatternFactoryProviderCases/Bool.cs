@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class Bool
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class Bool
     }
 
     private IBoolArgumentPatternFactory Target() => Fixture.Sut.Bool;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

@@ -11,6 +11,8 @@ using Xunit;
 
 public sealed class Create
 {
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
+
     [Fact]
     public void NullElementPattern_ThrowsArgumentNullException()
     {
@@ -28,6 +30,4 @@ public sealed class Create
     }
 
     private IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> Target<TElement>(IArgumentPattern<TypedConstant, TElement> elementPattern) => Fixture.Sut.Create(elementPattern);
-
-    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }

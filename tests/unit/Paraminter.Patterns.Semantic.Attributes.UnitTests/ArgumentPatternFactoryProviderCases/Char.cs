@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class Char
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class Char
     }
 
     private ICharArgumentPatternFactory Target() => Fixture.Sut.Char;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

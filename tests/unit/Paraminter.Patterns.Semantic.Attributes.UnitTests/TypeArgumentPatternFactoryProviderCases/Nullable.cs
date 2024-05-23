@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class Nullable
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class Nullable
     }
 
     private INullableTypeArgumentPatternFactory Target() => Fixture.Sut.Nullable;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

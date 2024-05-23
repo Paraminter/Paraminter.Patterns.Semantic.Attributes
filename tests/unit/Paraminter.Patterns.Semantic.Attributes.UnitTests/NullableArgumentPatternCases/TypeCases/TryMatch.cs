@@ -11,6 +11,8 @@ using Xunit;
 
 public sealed class TryMatch
 {
+    private readonly IPatternFixture<ITypeSymbol> Fixture = PatternFixtureFactory.CreateType();
+
     [Fact]
     public void NullableTypeAttribute_Null_Successful()
     {
@@ -114,8 +116,6 @@ public sealed class TryMatch
     private static void NoSetup(TypedConstant argument) { }
 
     private IArgumentPatternMatchResult<ITypeSymbol?> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<ITypeSymbol> Fixture = PatternFixtureFactory.CreateType();
 
     [AssertionMethod]
     private void Successful(ITypeSymbol? matchedArgument, string source, Action<TypedConstant> setupDelegate)

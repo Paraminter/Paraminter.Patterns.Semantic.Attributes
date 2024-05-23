@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class NonNullable
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class NonNullable
     }
 
     private INonNullableTypeArgumentPatternFactory Target() => Fixture.Sut.NonNullable;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

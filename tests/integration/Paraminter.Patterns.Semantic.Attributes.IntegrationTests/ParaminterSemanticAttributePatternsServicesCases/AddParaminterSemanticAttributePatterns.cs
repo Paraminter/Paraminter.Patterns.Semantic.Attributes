@@ -3,32 +3,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using Moq;
-
-using System;
-
 using Xunit;
 
 public sealed class AddParaminterSemanticAttributePatterns
 {
-    [Fact]
-    public void NullServiceCollection_ThrowsArgumentNullException()
-    {
-        var result = Record.Exception(() => Target(null!));
-
-        Assert.IsType<ArgumentNullException>(result);
-    }
-
-    [Fact]
-    public void ValidServiceCollection_ReturnsSameServiceCollection()
-    {
-        var services = Mock.Of<IServiceCollection>();
-
-        var result = Target(services);
-
-        Assert.Same(services, result);
-    }
-
     [Fact]
     public void IArgumentPatternFactoryProvider_ServiceCanBeResolved() => ServiceCanBeResolved<IArgumentPatternFactoryProvider>();
 
@@ -107,7 +85,7 @@ public sealed class AddParaminterSemanticAttributePatterns
     [Fact]
     public void INullableArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INullableArrayArgumentPatternFactory>();
 
-    private static IServiceCollection Target(IServiceCollection services) => ParaminterSemanticAttributePatternsServices.AddParaminterSemanticAttributePatterns(services);
+    private static void Target(IServiceCollection services) => ParaminterSemanticAttributePatternsServices.AddParaminterSemanticAttributePatterns(services);
 
     [AssertionMethod]
     private static void ServiceCanBeResolved<TService>()

@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class Byte
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class Byte
     }
 
     private IByteArgumentPatternFactory Target() => Fixture.Sut.Byte;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

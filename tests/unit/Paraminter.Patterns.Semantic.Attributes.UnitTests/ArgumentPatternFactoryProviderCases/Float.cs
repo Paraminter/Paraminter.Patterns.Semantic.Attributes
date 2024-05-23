@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class Float
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class Float
     }
 
     private IFloatArgumentPatternFactory Target() => Fixture.Sut.Float;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

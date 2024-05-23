@@ -10,6 +10,8 @@ using Xunit;
 
 public sealed class TryMatch
 {
+    private readonly IPatternFixture Fixture = PatternFixtureFactory.Create();
+
     [Fact]
     public void Error_Unsuccessful()
     {
@@ -104,8 +106,6 @@ public sealed class TryMatch
     private static readonly object ArrayArgument = new[] { 42 };
 
     private IArgumentPatternMatchResult<object> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture Fixture = PatternFixtureFactory.Create();
 
     [AssertionMethod]
     private void Successful(object matchedArgument, string source)

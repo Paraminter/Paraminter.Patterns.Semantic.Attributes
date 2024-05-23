@@ -17,6 +17,7 @@
         <PackageReference Include="xunit.runner.visualstudio" />
 
         <ProjectReference Include="..\..\..\src\Paraminter.Patterns.Semantic.Attributes.Abstractions\Paraminter.Patterns.Semantic.Attributes.Abstractions.csproj" />
+        <ProjectReference Include="..\..\..\src\Paraminter.Patterns.Semantic.Attributes.DependencyInjection\Paraminter.Patterns.Semantic.Attributes.DependencyInjection.csproj" />
         <ProjectReference Include="..\..\..\src\Paraminter.Patterns.Semantic.Attributes\Paraminter.Patterns.Semantic.Attributes.csproj" />
     </ItemGroup>
 

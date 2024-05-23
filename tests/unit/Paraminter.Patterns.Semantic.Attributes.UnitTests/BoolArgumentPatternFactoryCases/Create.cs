@@ -6,6 +6,8 @@ using Xunit;
 
 public sealed class Create
 {
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
+
     [Fact]
     public void ReturnsPattern()
     {
@@ -15,6 +17,4 @@ public sealed class Create
     }
 
     private IArgumentPattern<TypedConstant, bool> Target() => Fixture.Sut.Create();
-
-    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }
