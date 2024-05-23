@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class UInt
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class UInt
     }
 
     private IUIntArgumentPatternFactory Target() => Fixture.Sut.UInt;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

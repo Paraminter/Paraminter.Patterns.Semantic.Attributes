@@ -8,6 +8,8 @@ using Xunit;
 
 public sealed class Create
 {
+    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
+
     [Fact]
     public void ReturnsPattern()
     {
@@ -17,6 +19,4 @@ public sealed class Create
     }
 
     private IArgumentPattern<TypedConstant, StringComparison> Target() => Fixture.Sut.Create<StringComparison>();
-
-    private readonly IFactoryFixture Fixture = FactoryFixtureFactory.Create();
 }

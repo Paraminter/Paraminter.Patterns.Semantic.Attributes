@@ -10,6 +10,8 @@ using Xunit;
 
 public sealed class TryMatch
 {
+    private readonly IPatternFixture<ITypeSymbol> Fixture = PatternFixtureFactory.CreateType();
+
     [Fact]
     public void TypeAttribute_NonNull_Successful()
     {
@@ -78,8 +80,6 @@ public sealed class TryMatch
     private static ITypeSymbol IntType(Compilation compilation) => compilation.GetSpecialType(SpecialType.System_Int32);
 
     private IArgumentPatternMatchResult<ITypeSymbol> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<ITypeSymbol> Fixture = PatternFixtureFactory.CreateType();
 
     [AssertionMethod]
     private void Successful(Func<Compilation, ITypeSymbol> matchedArgumentDelegate, string source)

@@ -8,6 +8,8 @@ using Xunit;
 
 public sealed class TryMatch
 {
+    private readonly IPatternFixture<short> Fixture = PatternFixtureFactory.CreateShort();
+
     [Fact]
     public void ShortAttribute_Successful()
     {
@@ -61,8 +63,6 @@ public sealed class TryMatch
     }
 
     private IArgumentPatternMatchResult<short> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<short> Fixture = PatternFixtureFactory.CreateShort();
 
     [AssertionMethod]
     private void Successful(short matchedArgument, string source)

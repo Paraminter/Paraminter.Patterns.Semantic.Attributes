@@ -4,6 +4,8 @@ using Xunit;
 
 public sealed class UShort
 {
+    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
+
     [Fact]
     public void ReturnsSameAsConstructedWith()
     {
@@ -13,6 +15,4 @@ public sealed class UShort
     }
 
     private IUShortArgumentPatternFactory Target() => Fixture.Sut.UShort;
-
-    private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 }

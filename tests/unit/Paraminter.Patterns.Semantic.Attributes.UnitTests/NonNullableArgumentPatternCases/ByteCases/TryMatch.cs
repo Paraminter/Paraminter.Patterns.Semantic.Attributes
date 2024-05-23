@@ -8,6 +8,8 @@ using Xunit;
 
 public sealed class TryMatch
 {
+    private readonly IPatternFixture<byte> Fixture = PatternFixtureFactory.CreateByte();
+
     [Fact]
     public void ByteAttribute_Byte_Successful()
     {
@@ -61,8 +63,6 @@ public sealed class TryMatch
     }
 
     private IArgumentPatternMatchResult<byte> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<byte> Fixture = PatternFixtureFactory.CreateByte();
 
     [AssertionMethod]
     private void Successful(byte matchedArgument, string source)

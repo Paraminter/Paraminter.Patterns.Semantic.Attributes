@@ -8,6 +8,8 @@ using Xunit;
 
 public sealed class TryMatch_ByteEnum
 {
+    private readonly IPatternFixture<ByteEnum> Fixture = PatternFixtureFactory.Create<ByteEnum>();
+
     [Fact]
     public void ByteEnumAttribute_Successful()
     {
@@ -35,8 +37,6 @@ public sealed class TryMatch_ByteEnum
     }
 
     private IArgumentPatternMatchResult<ByteEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<ByteEnum> Fixture = PatternFixtureFactory.Create<ByteEnum>();
 
     [AssertionMethod]
     private void Successful(ByteEnum matchedArgument, string source)

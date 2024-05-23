@@ -8,6 +8,8 @@ using Xunit;
 
 public sealed class TryMatch
 {
+    private readonly IPatternFixture<double> Fixture = PatternFixtureFactory.CreateDouble();
+
     [Fact]
     public void DoubleAttribute_Successful()
     {
@@ -61,8 +63,6 @@ public sealed class TryMatch
     }
 
     private IArgumentPatternMatchResult<double> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<double> Fixture = PatternFixtureFactory.CreateDouble();
 
     [AssertionMethod]
     private void Successful(double matchedArgument, string source)

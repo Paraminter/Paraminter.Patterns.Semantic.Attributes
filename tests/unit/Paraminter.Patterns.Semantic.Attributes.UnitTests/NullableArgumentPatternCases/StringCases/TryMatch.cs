@@ -11,6 +11,8 @@ using Xunit;
 
 public sealed class TryMatch
 {
+    private readonly IPatternFixture<string> Fixture = PatternFixtureFactory.CreateString();
+
     [Fact]
     public void NullableStringAttribute_Null_Successful()
     {
@@ -114,8 +116,6 @@ public sealed class TryMatch
     private static void NoSetup(TypedConstant argument) { }
 
     private IArgumentPatternMatchResult<string?> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<string> Fixture = PatternFixtureFactory.CreateString();
 
     [AssertionMethod]
     private void Successful(string? matchedArgument, string source, Action<TypedConstant> setupDelegate)

@@ -1,0 +1,32 @@
+﻿namespace Paraminter.Patterns.Semantic.Attributes.ParaminterSemanticAttributePatternsServicesCases;
+
+using Microsoft.Extensions.DependencyInjection;
+
+using Moq;
+
+using System;
+
+using Xunit;
+
+public sealed class AddParaminterSemanticAttributePatterns
+{
+    [Fact]
+    public void NullServiceCollection_ThrowsArgumentNullException()
+    {
+        var result = Record.Exception(() => Target(null!));
+
+        Assert.IsType<ArgumentNullException>(result);
+    }
+
+    [Fact]
+    public void ValidServiceCollection_ReturnsSameServiceCollection()
+    {
+        var services = Mock.Of<IServiceCollection>();
+
+        var result = Target(services);
+
+        Assert.Same(services, result);
+    }
+
+    private static IServiceCollection Target(IServiceCollection services) => ParaminterSemanticAttributePatternsServices.AddParaminterSemanticAttributePatterns(services);
+}

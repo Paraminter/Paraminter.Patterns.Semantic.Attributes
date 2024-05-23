@@ -8,6 +8,8 @@ using Xunit;
 
 public sealed class TryMatch_UShortEnum
 {
+    private readonly IPatternFixture<UShortEnum> Fixture = PatternFixtureFactory.Create<UShortEnum>();
+
     [Fact]
     public void UShortEnumAttribute_Successful()
     {
@@ -35,8 +37,6 @@ public sealed class TryMatch_UShortEnum
     }
 
     private IArgumentPatternMatchResult<UShortEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
-
-    private readonly IPatternFixture<UShortEnum> Fixture = PatternFixtureFactory.Create<UShortEnum>();
 
     [AssertionMethod]
     private void Successful(UShortEnum matchedArgument, string source)
