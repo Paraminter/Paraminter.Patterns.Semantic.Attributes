@@ -22,7 +22,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Unsuccessful<object>(source, NoSetup<object>);
+        Unsuccessful<object>(source, NoSetup);
     }
 
     [Fact]
@@ -35,7 +35,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful<object>(null, source, NoSetup<object>);
+        Successful<object>(null, source, NoSetup);
     }
 
     [Fact]
@@ -48,7 +48,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful<object>(null, source, NoSetup<object>);
+        Successful<object>(null, source, NoSetup);
     }
 
     [Fact]
@@ -61,7 +61,7 @@ public sealed class TryMatch
             public class Foo { }
             """;
 
-        Successful<object>(null, source, NoSetup<object>);
+        Successful<object>(null, source, NoSetup);
     }
 
     [Fact]
@@ -78,7 +78,9 @@ public sealed class TryMatch
 
         Successful(result, source, setup);
 
-        void setup(IPatternFixture<object> fixture, TypedConstant argument)
+        void setup(
+            IPatternFixture<object> fixture,
+            TypedConstant argument)
         {
             Mock<IArgumentPatternMatchResult<IReadOnlyList<object>>> nonNullableMatchResultMock = new();
 
@@ -101,7 +103,9 @@ public sealed class TryMatch
 
         Unsuccessful<object>(source, setup);
 
-        void setup(IPatternFixture<object> fixture, TypedConstant argument)
+        void setup(
+            IPatternFixture<object> fixture,
+            TypedConstant argument)
         {
             Mock<IArgumentPatternMatchResult<IReadOnlyList<object>>> nonNullableMatchResultMock = new();
 
@@ -112,12 +116,23 @@ public sealed class TryMatch
     }
 
     [SuppressMessage("Critical Code Smell", "S1186: Methods should not be empty", Justification = "Implements pseudo-interface.")]
-    private static void NoSetup<TElement>(IPatternFixture<TElement> fixture, TypedConstant argument) { }
+    private static void NoSetup<TElement>(
+        IPatternFixture<TElement> fixture,
+        TypedConstant argument)
+    { }
 
-    private static IArgumentPatternMatchResult<IReadOnlyList<TElement>?> Target<TElement>(IPatternFixture<TElement> fixture, TypedConstant argument) => fixture.Sut.TryMatch(argument);
+    private static IArgumentPatternMatchResult<IReadOnlyList<TElement>?> Target<TElement>(
+        IPatternFixture<TElement> fixture,
+        TypedConstant argument)
+    {
+        return fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private static void Successful<TElement>(IReadOnlyList<TElement>? matchedArgument, string source, Action<IPatternFixture<TElement>, TypedConstant> setupDelegate)
+    private static void Successful<TElement>(
+        IReadOnlyList<TElement>? matchedArgument,
+        string source,
+        Action<IPatternFixture<TElement>, TypedConstant> setupDelegate)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<IReadOnlyList<TElement>?>>();
 
@@ -135,7 +150,9 @@ public sealed class TryMatch
     }
 
     [AssertionMethod]
-    private static void Unsuccessful<TElement>(string source, Action<IPatternFixture<TElement>, TypedConstant> setupDelegate)
+    private static void Unsuccessful<TElement>(
+        string source,
+        Action<IPatternFixture<TElement>, TypedConstant> setupDelegate)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<IReadOnlyList<TElement>?>>();
 

@@ -47,10 +47,16 @@ public sealed class TryMatch
         Unsuccessful(source);
     }
 
-    private static IArgumentPatternMatchResult<TOut> Target<TOut>(IPatternFixture<TOut> fixture, TypedConstant argument) => fixture.Sut.TryMatch(argument);
+    private static IArgumentPatternMatchResult<TOut> Target<TOut>(
+        IPatternFixture<TOut> fixture,
+        TypedConstant argument)
+    {
+        return fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private static void Unsuccessful(string source)
+    private static void Unsuccessful(
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<bool>>();
 

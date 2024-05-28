@@ -3,11 +3,13 @@
 using System;
 
 [AttributeUsage(AttributeTargets.Class)]
-public sealed class ByteAttribute : Attribute
+public sealed class ByteAttribute
+    : Attribute
 {
     public byte Value { get; }
 
-    public ByteAttribute(byte value)
+    public ByteAttribute(
+        byte value)
     {
         Value = value;
     }

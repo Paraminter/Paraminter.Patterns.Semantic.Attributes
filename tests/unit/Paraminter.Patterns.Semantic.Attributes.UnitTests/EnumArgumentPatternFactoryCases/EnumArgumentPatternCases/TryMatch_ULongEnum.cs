@@ -36,10 +36,16 @@ public sealed class TryMatch_ULongEnum
         Successful(ULongEnum.None, source);
     }
 
-    private IArgumentPatternMatchResult<ULongEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+    private IArgumentPatternMatchResult<ULongEnum> Target(
+        TypedConstant argument)
+    {
+        return Fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private void Successful(ULongEnum matchedArgument, string source)
+    private void Successful(
+        ULongEnum matchedArgument,
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<ULongEnum>>();
 

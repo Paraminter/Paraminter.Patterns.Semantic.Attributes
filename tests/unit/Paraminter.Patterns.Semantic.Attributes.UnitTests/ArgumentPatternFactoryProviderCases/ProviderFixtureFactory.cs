@@ -25,12 +25,48 @@ internal static class ProviderFixtureFactory
         Mock<ITypeArgumentPatternFactoryProvider> typeMock = new();
         Mock<IArrayArgumentPatternFactoryProvider> arrayMock = new();
 
-        ArgumentPatternFactoryProvider sut = new(boolMock.Object, byteMock.Object, sbyteMock.Object, charMock.Object, shortMock.Object, ushortMock.Object, intMock.Object, uintMock.Object, longMock.Object, ulongMock.Object, floatMock.Object, doubleMock.Object, enumMock.Object, stringMock.Object, objectMock.Object, typeMock.Object, arrayMock.Object);
+        ArgumentPatternFactoryProvider sut = new(
+            boolMock.Object,
+            byteMock.Object,
+            sbyteMock.Object,
+            charMock.Object,
+            shortMock.Object,
+            ushortMock.Object,
+            intMock.Object,
+            uintMock.Object,
+            longMock.Object,
+            ulongMock.Object,
+            floatMock.Object,
+            doubleMock.Object,
+            enumMock.Object,
+            stringMock.Object,
+            objectMock.Object,
+            typeMock.Object,
+            arrayMock.Object);
 
-        return new ProviderFixture(sut, boolMock, byteMock, sbyteMock, charMock, shortMock, ushortMock, intMock, uintMock, longMock, ulongMock, floatMock, doubleMock, enumMock, stringMock, objectMock, typeMock, arrayMock);
+        return new ProviderFixture(
+            sut,
+            boolMock,
+            byteMock,
+            sbyteMock,
+            charMock,
+            shortMock,
+            ushortMock,
+            intMock,
+            uintMock,
+            longMock,
+            ulongMock,
+            floatMock,
+            doubleMock,
+            enumMock,
+            stringMock,
+            objectMock,
+            typeMock,
+            arrayMock);
     }
 
-    private sealed class ProviderFixture : IProviderFixture
+    private sealed class ProviderFixture
+        : IProviderFixture
     {
         private readonly IArgumentPatternFactoryProvider Sut;
 

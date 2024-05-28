@@ -6,7 +6,8 @@ using System;
 using System.Collections.Generic;
 
 /// <inheritdoc cref="IEnumArgumentPatternFactory"/>
-public sealed class EnumArgumentPatternFactory : IEnumArgumentPatternFactory
+public sealed class EnumArgumentPatternFactory
+    : IEnumArgumentPatternFactory
 {
     private static readonly IReadOnlyDictionary<Type, Func<Type, TypedConstant, (bool Match, object? Result)>> PatternDelegates = new Dictionary<Type, Func<Type, TypedConstant, (bool Match, object? Result)>>()
     {
@@ -24,7 +25,8 @@ public sealed class EnumArgumentPatternFactory : IEnumArgumentPatternFactory
 
     /// <summary>Instantiates a <see cref="EnumArgumentPatternFactory"/>, handling creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching enum arguments.</summary>
     /// <param name="matchResultFactoryProvider">Provides factories of <see cref="IArgumentPatternMatchResult{TMatchedArgument}"/>.</param>
-    public EnumArgumentPatternFactory(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    public EnumArgumentPatternFactory(
+        IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
     {
         MatchResultFactoryProvider = matchResultFactoryProvider ?? throw new ArgumentNullException(nameof(matchResultFactoryProvider));
     }
@@ -39,7 +41,8 @@ public sealed class EnumArgumentPatternFactory : IEnumArgumentPatternFactory
         return new EnumArgumentPattern<TEnum>(nonGenericPatternDelegate, MatchResultFactoryProvider);
     }
 
-    private static Func<Type, TypedConstant, (bool Match, object? Result)> CreateNonGenericPatternDelegate<TUnderlying>(Func<Type, TUnderlying, object> factoryDelegate)
+    private static Func<Type, TypedConstant, (bool Match, object? Result)> CreateNonGenericPatternDelegate<TUnderlying>(
+        Func<Type, TUnderlying, object> factoryDelegate)
     {
         return pattern;
 
@@ -54,20 +57,24 @@ public sealed class EnumArgumentPatternFactory : IEnumArgumentPatternFactory
         }
     }
 
-    private sealed class EnumArgumentPattern<TEnum> : IArgumentPattern<TypedConstant, TEnum>
+    private sealed class EnumArgumentPattern<TEnum>
+        : IArgumentPattern<TypedConstant, TEnum>
     {
         private readonly Func<Type, TypedConstant, (bool Match, object? Result)> NonGenericPatternDelegate;
 
         private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
 
-        public EnumArgumentPattern(Func<Type, TypedConstant, (bool Match, object? Result)> nonGenericPattern, IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        public EnumArgumentPattern(
+            Func<Type, TypedConstant, (bool Match, object? Result)> nonGenericPattern,
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             NonGenericPatternDelegate = nonGenericPattern;
 
             MatchResultFactoryProvider = matchResultFactoryProvider;
         }
 
-        IArgumentPatternMatchResult<TEnum> IArgumentPattern<TypedConstant, TEnum>.TryMatch(TypedConstant argument)
+        IArgumentPatternMatchResult<TEnum> IArgumentPattern<TypedConstant, TEnum>.TryMatch(
+            TypedConstant argument)
         {
             if (argument.Kind is not TypedConstantKind.Enum)
             {

@@ -4,7 +4,8 @@ using Microsoft.CodeAnalysis;
 
 internal static class TypedConstantFactory
 {
-    public static TypedConstant Create(string source)
+    public static TypedConstant Create(
+        string source)
     {
         var compilation = CSharpCompilationFactory.Create(source);
 

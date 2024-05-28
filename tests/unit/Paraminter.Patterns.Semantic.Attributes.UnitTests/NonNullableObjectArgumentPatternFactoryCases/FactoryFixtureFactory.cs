@@ -13,13 +13,16 @@ internal static class FactoryFixtureFactory
         return new FactoryFixture(sut, matchResultFactoryProviderMock);
     }
 
-    private sealed class FactoryFixture : IFactoryFixture
+    private sealed class FactoryFixture
+        : IFactoryFixture
     {
         private readonly INonNullableObjectArgumentPatternFactory Sut;
 
         private readonly Mock<IArgumentPatternMatchResultFactoryProvider> MatchResultFactoryProviderMock;
 
-        public FactoryFixture(INonNullableObjectArgumentPatternFactory sut, Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
+        public FactoryFixture(
+            INonNullableObjectArgumentPatternFactory sut,
+            Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
         {
             Sut = sut;
 

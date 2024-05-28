@@ -12,7 +12,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, bool> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, bool> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IBoolArgumentPatternFactory factory = new BoolArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -24,7 +25,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, byte> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, byte> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IByteArgumentPatternFactory factory = new ByteArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -36,7 +38,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, char> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, char> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             ICharArgumentPatternFactory factory = new CharArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -48,7 +51,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, double> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, double> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IDoubleArgumentPatternFactory factory = new DoubleArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -60,7 +64,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, float> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, float> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IFloatArgumentPatternFactory factory = new FloatArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -72,7 +77,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, int> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, int> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IIntArgumentPatternFactory factory = new IntArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -84,7 +90,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, long> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, long> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             ILongArgumentPatternFactory factory = new LongArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -96,7 +103,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, sbyte> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, sbyte> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             ISByteArgumentPatternFactory factory = new SByteArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -108,7 +116,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, short> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, short> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IShortArgumentPatternFactory factory = new ShortArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -120,7 +129,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, string> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, string> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             INonNullableStringArgumentPatternFactory factory = new NonNullableStringArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -132,7 +142,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, ITypeSymbol> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, ITypeSymbol> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             INonNullableTypeArgumentPatternFactory factory = new NonNullableTypeArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -144,7 +155,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, uint> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, uint> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IUIntArgumentPatternFactory factory = new UIntArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -156,7 +168,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, ulong> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, ulong> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IULongArgumentPatternFactory factory = new ULongArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -168,7 +181,8 @@ internal static class PatternFixtureFactory
     {
         return Create(createPattern);
 
-        static IArgumentPattern<TypedConstant, ushort> createPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        static IArgumentPattern<TypedConstant, ushort> createPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             IUShortArgumentPatternFactory factory = new UShortArgumentPatternFactory(matchResultFactoryProvider);
 
@@ -176,7 +190,8 @@ internal static class PatternFixtureFactory
         }
     }
 
-    private static PatternFixture<TOut> Create<TOut>(Func<IArgumentPatternMatchResultFactoryProvider, IArgumentPattern<TypedConstant, TOut>> patternDelegate)
+    private static PatternFixture<TOut> Create<TOut>(
+        Func<IArgumentPatternMatchResultFactoryProvider, IArgumentPattern<TypedConstant, TOut>> patternDelegate)
     {
         Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock = new();
 
@@ -185,13 +200,16 @@ internal static class PatternFixtureFactory
         return new PatternFixture<TOut>(sut, matchResultFactoryProviderMock);
     }
 
-    private sealed class PatternFixture<TOut> : IPatternFixture<TOut>
+    private sealed class PatternFixture<TOut>
+        : IPatternFixture<TOut>
     {
         private readonly IArgumentPattern<TypedConstant, TOut> Sut;
 
         private readonly Mock<IArgumentPatternMatchResultFactoryProvider> MatchResultFactoryProviderMock;
 
-        public PatternFixture(IArgumentPattern<TypedConstant, TOut> sut, Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
+        public PatternFixture(
+            IArgumentPattern<TypedConstant, TOut> sut,
+            Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
         {
             Sut = sut;
 

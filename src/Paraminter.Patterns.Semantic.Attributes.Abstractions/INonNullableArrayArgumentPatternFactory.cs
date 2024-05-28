@@ -11,5 +11,6 @@ public interface INonNullableArrayArgumentPatternFactory
     /// <typeparam name="TElement">The element-type of the arguments matched by the created pattern.</typeparam>
     /// <param name="elementPattern">The pattern of each element of the matched arguments.</param>
     /// <returns>The created pattern.</returns>
-    public abstract IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> Create<TElement>(IArgumentPattern<TypedConstant, TElement> elementPattern);
+    public abstract IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> Create<TElement>(
+        IArgumentPattern<TypedConstant, TElement> elementPattern);
 }

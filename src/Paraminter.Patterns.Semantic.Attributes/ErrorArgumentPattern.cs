@@ -2,14 +2,20 @@
 
 using Microsoft.CodeAnalysis;
 
-internal sealed class ErrorArgumentPattern<T> : IArgumentPattern<TypedConstant, T>
+internal sealed class ErrorArgumentPattern<T>
+    : IArgumentPattern<TypedConstant, T>
 {
     private readonly IUnsuccessfulArgumentPatternMatchResultFactory MatchResultFactoryProvider;
 
-    public ErrorArgumentPattern(IUnsuccessfulArgumentPatternMatchResultFactory matchResultFactoryProvider)
+    public ErrorArgumentPattern(
+        IUnsuccessfulArgumentPatternMatchResultFactory matchResultFactoryProvider)
     {
         MatchResultFactoryProvider = matchResultFactoryProvider;
     }
 
-    IArgumentPatternMatchResult<T> IArgumentPattern<TypedConstant, T>.TryMatch(TypedConstant argument) => MatchResultFactoryProvider.Create<T>();
+    IArgumentPatternMatchResult<T> IArgumentPattern<TypedConstant, T>.TryMatch(
+        TypedConstant argument)
+    {
+        return MatchResultFactoryProvider.Create<T>();
+    }
 }

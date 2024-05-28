@@ -3,7 +3,8 @@
 using System;
 
 /// <inheritdoc cref="IArgumentPatternFactoryProvider"/>
-public sealed class ArgumentPatternFactoryProvider : IArgumentPatternFactoryProvider
+public sealed class ArgumentPatternFactoryProvider
+    : IArgumentPatternFactoryProvider
 {
     private readonly IBoolArgumentPatternFactory Bool;
     private readonly IByteArgumentPatternFactory Byte;

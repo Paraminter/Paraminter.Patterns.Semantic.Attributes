@@ -36,10 +36,16 @@ public sealed class TryMatch_ByteEnum
         Successful(ByteEnum.None, source);
     }
 
-    private IArgumentPatternMatchResult<ByteEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+    private IArgumentPatternMatchResult<ByteEnum> Target(
+        TypedConstant argument)
+    {
+        return Fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private void Successful(ByteEnum matchedArgument, string source)
+    private void Successful(
+        ByteEnum matchedArgument,
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<ByteEnum>>();
 

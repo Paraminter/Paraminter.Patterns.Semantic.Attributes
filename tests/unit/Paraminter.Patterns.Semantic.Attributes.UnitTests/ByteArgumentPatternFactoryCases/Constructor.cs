@@ -24,5 +24,9 @@ public sealed class Constructor
         Assert.NotNull(result);
     }
 
-    private static ByteArgumentPatternFactory Target(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider) => new(matchResultFactoryProvider);
+    private static ByteArgumentPatternFactory Target(
+        IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    {
+        return new ByteArgumentPatternFactory(matchResultFactoryProvider);
+    }
 }

@@ -2,20 +2,24 @@
 
 using Microsoft.CodeAnalysis;
 
-internal sealed class NullableArgumentPattern<T> : IArgumentPattern<TypedConstant, T?>
+internal sealed class NullableArgumentPattern<T>
+    : IArgumentPattern<TypedConstant, T?>
 {
     private readonly IArgumentPattern<TypedConstant, T> NonNullablePattern;
 
     private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
 
-    public NullableArgumentPattern(IArgumentPattern<TypedConstant, T> nonNullablePattern, IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    public NullableArgumentPattern(
+        IArgumentPattern<TypedConstant, T> nonNullablePattern,
+        IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
     {
         NonNullablePattern = nonNullablePattern;
 
         MatchResultFactoryProvider = matchResultFactoryProvider;
     }
 
-    IArgumentPatternMatchResult<T?> IArgumentPattern<TypedConstant, T?>.TryMatch(TypedConstant argument)
+    IArgumentPatternMatchResult<T?> IArgumentPattern<TypedConstant, T?>.TryMatch(
+        TypedConstant argument)
     {
         if (argument.IsNull)
         {
@@ -32,6 +36,11 @@ internal sealed class NullableArgumentPattern<T> : IArgumentPattern<TypedConstan
         return CreateSuccessful(nonNullableResult.GetMatchedArgument());
     }
 
-    private IArgumentPatternMatchResult<T?> CreateSuccessful(T? matchedArgument) => MatchResultFactoryProvider.Successful.Create(matchedArgument);
+    private IArgumentPatternMatchResult<T?> CreateSuccessful(
+        T? matchedArgument)
+    {
+        return MatchResultFactoryProvider.Successful.Create(matchedArgument);
+    }
+
     private IArgumentPatternMatchResult<T?> CreateUnsuccessful() => MatchResultFactoryProvider.Unsuccessful.Create<T?>();
 }

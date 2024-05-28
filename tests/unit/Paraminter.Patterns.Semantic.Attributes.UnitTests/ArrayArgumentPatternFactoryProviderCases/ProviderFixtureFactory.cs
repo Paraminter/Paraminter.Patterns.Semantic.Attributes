@@ -14,14 +14,18 @@ internal static class ProviderFixtureFactory
         return new ProviderFixture(sut, nonNullableMock, nullableMock);
     }
 
-    private sealed class ProviderFixture : IProviderFixture
+    private sealed class ProviderFixture
+        : IProviderFixture
     {
         private readonly IArrayArgumentPatternFactoryProvider Sut;
 
         private readonly Mock<INonNullableArrayArgumentPatternFactory> NonNullableMock;
         private readonly Mock<INullableArrayArgumentPatternFactory> NullableMock;
 
-        public ProviderFixture(IArrayArgumentPatternFactoryProvider sut, Mock<INonNullableArrayArgumentPatternFactory> nonNullableMock, Mock<INullableArrayArgumentPatternFactory> nullableMock)
+        public ProviderFixture(
+            IArrayArgumentPatternFactoryProvider sut,
+            Mock<INonNullableArrayArgumentPatternFactory> nonNullableMock,
+            Mock<INullableArrayArgumentPatternFactory> nullableMock)
         {
             Sut = sut;
 

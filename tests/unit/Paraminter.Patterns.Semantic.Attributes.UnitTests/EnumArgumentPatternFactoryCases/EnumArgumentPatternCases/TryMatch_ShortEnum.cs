@@ -36,10 +36,16 @@ public sealed class TryMatch_ShortEnum
         Successful(ShortEnum.None, source);
     }
 
-    private IArgumentPatternMatchResult<ShortEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+    private IArgumentPatternMatchResult<ShortEnum> Target(
+        TypedConstant argument)
+    {
+        return Fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private void Successful(ShortEnum matchedArgument, string source)
+    private void Successful(
+        ShortEnum matchedArgument,
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<ShortEnum>>();
 

@@ -32,5 +32,10 @@ public sealed class Constructor
         Assert.NotNull(result);
     }
 
-    private static ArrayArgumentPatternFactoryProvider Target(INonNullableArrayArgumentPatternFactory nonNullable, INullableArrayArgumentPatternFactory nullable) => new(nonNullable, nullable);
+    private static ArrayArgumentPatternFactoryProvider Target(
+        INonNullableArrayArgumentPatternFactory nonNullable,
+        INullableArrayArgumentPatternFactory nullable)
+    {
+        return new ArrayArgumentPatternFactoryProvider(nonNullable, nullable);
+    }
 }

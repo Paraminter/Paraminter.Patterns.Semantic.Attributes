@@ -77,12 +77,22 @@ public sealed class TryMatch
         Unsuccessful(source);
     }
 
-    private static ITypeSymbol IntType(Compilation compilation) => compilation.GetSpecialType(SpecialType.System_Int32);
+    private static ITypeSymbol IntType(
+        Compilation compilation)
+    {
+        return compilation.GetSpecialType(SpecialType.System_Int32);
+    }
 
-    private IArgumentPatternMatchResult<ITypeSymbol> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+    private IArgumentPatternMatchResult<ITypeSymbol> Target(
+        TypedConstant argument)
+    {
+        return Fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private void Successful(Func<Compilation, ITypeSymbol> matchedArgumentDelegate, string source)
+    private void Successful(
+        Func<Compilation, ITypeSymbol> matchedArgumentDelegate,
+        string source)
     {
         var compilation = CSharpCompilationFactory.Create(source);
 
@@ -100,7 +110,8 @@ public sealed class TryMatch
     }
 
     [AssertionMethod]
-    private void Unsuccessful(string source)
+    private void Unsuccessful(
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<ITypeSymbol>>();
 

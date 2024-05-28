@@ -28,5 +28,9 @@ public sealed class AddParaminterSemanticAttributePatterns
         Assert.Same(services, result);
     }
 
-    private static IServiceCollection Target(IServiceCollection services) => ParaminterSemanticAttributePatternsServices.AddParaminterSemanticAttributePatterns(services);
+    private static IServiceCollection Target(
+        IServiceCollection services)
+    {
+        return ParaminterSemanticAttributePatternsServices.AddParaminterSemanticAttributePatterns(services);
+    }
 }

@@ -7,7 +7,7 @@ public sealed class Array
     private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 
     [Fact]
-    public void ReturnsSameAsConstructedWith()
+    public void ReturnsProvider()
     {
         var result = Target();
 

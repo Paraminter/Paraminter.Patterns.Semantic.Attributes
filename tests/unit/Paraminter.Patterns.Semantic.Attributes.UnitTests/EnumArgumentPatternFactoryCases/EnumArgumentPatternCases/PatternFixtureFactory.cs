@@ -20,13 +20,16 @@ internal static class PatternFixtureFactory
         return new PatternFixture<TEnum>(sut, matchResultFactoryProviderMock);
     }
 
-    private sealed class PatternFixture<TEnum> : IPatternFixture<TEnum>
+    private sealed class PatternFixture<TEnum>
+        : IPatternFixture<TEnum>
     {
         private readonly IArgumentPattern<TypedConstant, TEnum> Sut;
 
         private readonly Mock<IArgumentPatternMatchResultFactoryProvider> MatchResultFactoryProviderMock;
 
-        public PatternFixture(IArgumentPattern<TypedConstant, TEnum> sut, Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
+        public PatternFixture(
+            IArgumentPattern<TypedConstant, TEnum> sut,
+            Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
         {
             Sut = sut;
 

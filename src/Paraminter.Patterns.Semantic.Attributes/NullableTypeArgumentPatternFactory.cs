@@ -5,7 +5,8 @@ using Microsoft.CodeAnalysis;
 using System;
 
 /// <inheritdoc cref="INullableTypeArgumentPatternFactory"/>
-public sealed class NullableTypeArgumentPatternFactory : INullableTypeArgumentPatternFactory
+public sealed class NullableTypeArgumentPatternFactory
+    : INullableTypeArgumentPatternFactory
 {
     private readonly INonNullableTypeArgumentPatternFactory NonNullablePatternFactory;
 
@@ -15,7 +16,9 @@ public sealed class NullableTypeArgumentPatternFactory : INullableTypeArgumentPa
     /// <param name="nonNullablePatternFactory">Handles creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching non-nullable <see cref="ITypeSymbol"/> arguments.</param>
     /// <param name="matchResultFactoryProvider">Provides factories of <see cref="IArgumentPatternMatchResult{TMatchedArgument}"/>.</param>
     /// <remarks>Attribute arguments of type <see cref="Type"/> will match the created patterns, as Roslyn uses <see cref="ITypeSymbol"/> to represent <see cref="Type"/>.</remarks>
-    public NullableTypeArgumentPatternFactory(INonNullableTypeArgumentPatternFactory nonNullablePatternFactory, IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    public NullableTypeArgumentPatternFactory(
+        INonNullableTypeArgumentPatternFactory nonNullablePatternFactory,
+        IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
     {
         NonNullablePatternFactory = nonNullablePatternFactory ?? throw new ArgumentNullException(nameof(nonNullablePatternFactory));
 

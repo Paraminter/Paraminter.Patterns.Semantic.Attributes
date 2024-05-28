@@ -105,10 +105,16 @@ public sealed class TryMatch
 
     private static readonly object ArrayArgument = new[] { 42 };
 
-    private IArgumentPatternMatchResult<object> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+    private IArgumentPatternMatchResult<object> Target(
+        TypedConstant argument)
+    {
+        return Fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private void Successful(object matchedArgument, string source)
+    private void Successful(
+        object matchedArgument,
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<object>>();
 
@@ -122,7 +128,8 @@ public sealed class TryMatch
     }
 
     [AssertionMethod]
-    private void Unsuccessful(string source)
+    private void Unsuccessful(
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<object>>();
 

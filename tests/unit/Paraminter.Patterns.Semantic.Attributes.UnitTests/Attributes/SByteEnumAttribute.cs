@@ -3,11 +3,13 @@
 using System;
 
 [AttributeUsage(AttributeTargets.Class)]
-public sealed class SByteEnumAttribute : Attribute
+public sealed class SByteEnumAttribute
+    : Attribute
 {
     public SByteEnum Value { get; }
 
-    public SByteEnumAttribute(SByteEnum value)
+    public SByteEnumAttribute(
+        SByteEnum value)
     {
         Value = value;
     }
