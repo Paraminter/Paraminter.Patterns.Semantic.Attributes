@@ -36,10 +36,16 @@ public sealed class TryMatch_UIntEnum
         Successful(UIntEnum.None, source);
     }
 
-    private IArgumentPatternMatchResult<UIntEnum> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+    private IArgumentPatternMatchResult<UIntEnum> Target(
+        TypedConstant argument)
+    {
+        return Fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private void Successful(UIntEnum matchedArgument, string source)
+    private void Successful(
+        UIntEnum matchedArgument,
+        string source)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<UIntEnum>>();
 

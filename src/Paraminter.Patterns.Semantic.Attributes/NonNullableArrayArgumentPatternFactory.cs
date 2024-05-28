@@ -6,18 +6,21 @@ using System;
 using System.Collections.Generic;
 
 /// <inheritdoc cref="INonNullableArrayArgumentPatternFactory"/>
-public sealed class NonNullableArrayArgumentPatternFactory : INonNullableArrayArgumentPatternFactory
+public sealed class NonNullableArrayArgumentPatternFactory
+    : INonNullableArrayArgumentPatternFactory
 {
     private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
 
     /// <summary>Instantiates a <see cref="NonNullableArrayArgumentPatternFactory"/>, handling creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching non-nullable array-valued arguments.</summary>
     /// <param name="matchResultFactoryProvider">Provides factories of <see cref="IArgumentPatternMatchResult{TMatchedArgument}"/>.</param>
-    public NonNullableArrayArgumentPatternFactory(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    public NonNullableArrayArgumentPatternFactory(
+        IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
     {
         MatchResultFactoryProvider = matchResultFactoryProvider ?? throw new ArgumentNullException(nameof(matchResultFactoryProvider));
     }
 
-    IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> INonNullableArrayArgumentPatternFactory.Create<TElement>(IArgumentPattern<TypedConstant, TElement> elementPattern)
+    IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> INonNullableArrayArgumentPatternFactory.Create<TElement>(
+        IArgumentPattern<TypedConstant, TElement> elementPattern)
     {
         if (elementPattern is null)
         {
@@ -27,20 +30,24 @@ public sealed class NonNullableArrayArgumentPatternFactory : INonNullableArrayAr
         return new NonNullableArrayArgumentPattern<TElement>(elementPattern, MatchResultFactoryProvider);
     }
 
-    internal sealed class NonNullableArrayArgumentPattern<TElement> : IArgumentPattern<TypedConstant, IReadOnlyList<TElement>>
+    internal sealed class NonNullableArrayArgumentPattern<TElement>
+        : IArgumentPattern<TypedConstant, IReadOnlyList<TElement>>
     {
         private readonly IArgumentPattern<TypedConstant, TElement> ElementPattern;
 
         private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
 
-        public NonNullableArrayArgumentPattern(IArgumentPattern<TypedConstant, TElement> elementPattern, IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        public NonNullableArrayArgumentPattern(
+            IArgumentPattern<TypedConstant, TElement> elementPattern,
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             ElementPattern = elementPattern;
 
             MatchResultFactoryProvider = matchResultFactoryProvider;
         }
 
-        IArgumentPatternMatchResult<IReadOnlyList<TElement>> IArgumentPattern<TypedConstant, IReadOnlyList<TElement>>.TryMatch(TypedConstant argument)
+        IArgumentPatternMatchResult<IReadOnlyList<TElement>> IArgumentPattern<TypedConstant, IReadOnlyList<TElement>>.TryMatch(
+            TypedConstant argument)
         {
             if (argument.Kind is not TypedConstantKind.Array)
             {
@@ -69,7 +76,12 @@ public sealed class NonNullableArrayArgumentPatternFactory : INonNullableArrayAr
             return CreateSuccessful(values);
         }
 
-        private IArgumentPatternMatchResult<IReadOnlyList<TElement>> CreateSuccessful(IReadOnlyList<TElement> matchedArgument) => MatchResultFactoryProvider.Successful.Create(matchedArgument);
+        private IArgumentPatternMatchResult<IReadOnlyList<TElement>> CreateSuccessful(
+            IReadOnlyList<TElement> matchedArgument)
+        {
+            return MatchResultFactoryProvider.Successful.Create(matchedArgument);
+        }
+
         private IArgumentPatternMatchResult<IReadOnlyList<TElement>> CreateUnsuccessful() => MatchResultFactoryProvider.Unsuccessful.Create<IReadOnlyList<TElement>>();
     }
 }

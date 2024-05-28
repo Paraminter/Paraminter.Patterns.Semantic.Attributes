@@ -79,7 +79,8 @@ public sealed class TryMatch
 
         Successful(matchedArgument, source, setup);
 
-        void setup(TypedConstant argument)
+        void setup(
+            TypedConstant argument)
         {
             Mock<IArgumentPatternMatchResult<ITypeSymbol>> nonNullableMatchResultMock = new();
 
@@ -102,7 +103,8 @@ public sealed class TryMatch
 
         Unsuccessful(source, setup);
 
-        void setup(TypedConstant argument)
+        void setup(
+            TypedConstant argument)
         {
             Mock<IArgumentPatternMatchResult<ITypeSymbol>> nonNullableMatchResultMock = new();
 
@@ -113,12 +115,21 @@ public sealed class TryMatch
     }
 
     [SuppressMessage("Critical Code Smell", "S1186: Methods should not be empty", Justification = "Implements pseudo-interface.")]
-    private static void NoSetup(TypedConstant argument) { }
+    private static void NoSetup(
+        TypedConstant argument)
+    { }
 
-    private IArgumentPatternMatchResult<ITypeSymbol?> Target(TypedConstant argument) => Fixture.Sut.TryMatch(argument);
+    private IArgumentPatternMatchResult<ITypeSymbol?> Target(
+        TypedConstant argument)
+    {
+        return Fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private void Successful(ITypeSymbol? matchedArgument, string source, Action<TypedConstant> setupDelegate)
+    private void Successful(
+        ITypeSymbol? matchedArgument,
+        string source,
+        Action<TypedConstant> setupDelegate)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<ITypeSymbol>>();
 
@@ -134,7 +145,9 @@ public sealed class TryMatch
     }
 
     [AssertionMethod]
-    private void Unsuccessful(string source, Action<TypedConstant> setupDelegate)
+    private void Unsuccessful(
+        string source,
+        Action<TypedConstant> setupDelegate)
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<ITypeSymbol>>();
 

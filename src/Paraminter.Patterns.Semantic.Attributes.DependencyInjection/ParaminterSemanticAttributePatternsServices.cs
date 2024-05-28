@@ -10,7 +10,8 @@ public static class ParaminterSemanticAttributePatternsServices
     /// <summary>Registers the services provided by <i>Paraminter.Patterns.Semantic.Attributes</i> with the provided <see cref="IServiceCollection"/>.</summary>
     /// <param name="services">The <see cref="IServiceCollection"/> with which services are registered.</param>
     /// <returns>The provided <see cref="IServiceCollection"/>, so that calls can be chained.</returns>
-    public static IServiceCollection AddParaminterSemanticAttributePatterns(this IServiceCollection services)
+    public static IServiceCollection AddParaminterSemanticAttributePatterns(
+        this IServiceCollection services)
     {
         if (services is null)
         {

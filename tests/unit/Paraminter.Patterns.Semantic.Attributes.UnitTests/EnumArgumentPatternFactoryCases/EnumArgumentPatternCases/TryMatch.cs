@@ -62,10 +62,16 @@ public sealed class TryMatch
         Unsuccessful<IntEnum>(source);
     }
 
-    private static IArgumentPatternMatchResult<TEnum> Target<TEnum>(IPatternFixture<TEnum> fixture, TypedConstant argument) => fixture.Sut.TryMatch(argument);
+    private static IArgumentPatternMatchResult<TEnum> Target<TEnum>(
+        IPatternFixture<TEnum> fixture,
+        TypedConstant argument)
+    {
+        return fixture.Sut.TryMatch(argument);
+    }
 
     [AssertionMethod]
-    private static void Unsuccessful<TEnum>(string source)
+    private static void Unsuccessful<TEnum>(
+        string source)
         where TEnum : Enum
     {
         var matchResult = Mock.Of<IArgumentPatternMatchResult<TEnum>>();

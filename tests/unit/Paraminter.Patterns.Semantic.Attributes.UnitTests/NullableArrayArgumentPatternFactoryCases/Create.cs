@@ -31,5 +31,9 @@ public sealed class Create
         Assert.NotNull(result);
     }
 
-    private IArgumentPattern<TypedConstant, IReadOnlyList<TElement>?> Target<TElement>(IArgumentPattern<TypedConstant, TElement> elementPattern) => Fixture.Sut.Create(elementPattern);
+    private IArgumentPattern<TypedConstant, IReadOnlyList<TElement>?> Target<TElement>(
+        IArgumentPattern<TypedConstant, TElement> elementPattern)
+    {
+        return Fixture.Sut.Create(elementPattern);
+    }
 }

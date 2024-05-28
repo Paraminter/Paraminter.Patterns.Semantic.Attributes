@@ -3,11 +3,13 @@
 using System;
 
 [AttributeUsage(AttributeTargets.Class)]
-public sealed class SByteAttribute : Attribute
+public sealed class SByteAttribute
+    : Attribute
 {
     public sbyte Value { get; }
 
-    public SByteAttribute(sbyte value)
+    public SByteAttribute(
+        sbyte value)
     {
         Value = value;
     }

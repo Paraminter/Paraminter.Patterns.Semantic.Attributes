@@ -21,7 +21,8 @@ internal static class PatternFixtureFactory
         return new PatternFixture<TElement>(sut, elementPatternMock, matchResultFactoryProviderMock);
     }
 
-    private sealed class PatternFixture<TElement> : IPatternFixture<TElement>
+    private sealed class PatternFixture<TElement>
+        : IPatternFixture<TElement>
     {
         private readonly IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> Sut;
 
@@ -29,7 +30,10 @@ internal static class PatternFixtureFactory
 
         private readonly Mock<IArgumentPatternMatchResultFactoryProvider> MatchResultFactoryProviderMock;
 
-        public PatternFixture(IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> sut, Mock<IArgumentPattern<TypedConstant, TElement>> elementPatternMock, Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
+        public PatternFixture(
+            IArgumentPattern<TypedConstant, IReadOnlyList<TElement>> sut,
+            Mock<IArgumentPattern<TypedConstant, TElement>> elementPatternMock,
+            Mock<IArgumentPatternMatchResultFactoryProvider> matchResultFactoryProviderMock)
         {
             Sut = sut;
 

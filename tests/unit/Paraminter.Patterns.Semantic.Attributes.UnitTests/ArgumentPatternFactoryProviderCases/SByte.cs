@@ -7,7 +7,7 @@ public sealed class SByte
     private readonly IProviderFixture Fixture = ProviderFixtureFactory.Create();
 
     [Fact]
-    public void ReturnsSameAsConstructedWith()
+    public void ReturnsFactory()
     {
         var result = Target();
 

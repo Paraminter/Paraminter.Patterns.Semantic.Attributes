@@ -3,11 +3,13 @@
 using System;
 
 [AttributeUsage(AttributeTargets.Class)]
-public sealed class NullableArrayAttribute : Attribute
+public sealed class NullableArrayAttribute
+    : Attribute
 {
     public object[]? Value { get; }
 
-    public NullableArrayAttribute(object[]? value)
+    public NullableArrayAttribute(
+        object[]? value)
     {
         Value = value;
     }

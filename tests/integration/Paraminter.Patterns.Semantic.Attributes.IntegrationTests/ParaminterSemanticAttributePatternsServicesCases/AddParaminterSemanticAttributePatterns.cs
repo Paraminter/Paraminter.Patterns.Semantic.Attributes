@@ -85,7 +85,11 @@ public sealed class AddParaminterSemanticAttributePatterns
     [Fact]
     public void INullableArrayArgumentPatternFactory_ServiceCanBeResolved() => ServiceCanBeResolved<INullableArrayArgumentPatternFactory>();
 
-    private static void Target(IServiceCollection services) => ParaminterSemanticAttributePatternsServices.AddParaminterSemanticAttributePatterns(services);
+    private static void Target(
+        IServiceCollection services)
+    {
+        ParaminterSemanticAttributePatternsServices.AddParaminterSemanticAttributePatterns(services);
+    }
 
     [AssertionMethod]
     private static void ServiceCanBeResolved<TService>()

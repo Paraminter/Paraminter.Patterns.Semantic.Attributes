@@ -5,29 +5,34 @@ using Microsoft.CodeAnalysis;
 using System;
 
 /// <inheritdoc cref="INonNullableObjectArgumentPatternFactory"/>
-public sealed class NonNullableObjectArgumentPatternFactory : INonNullableObjectArgumentPatternFactory
+public sealed class NonNullableObjectArgumentPatternFactory
+    : INonNullableObjectArgumentPatternFactory
 {
     private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
 
     /// <summary>Instantiates a <see cref="NonNullableObjectArgumentPatternFactory"/>, handling creation of <see cref="IArgumentPattern{TIn, TOut}"/> matching non-nullable <see cref="object"/> arguments.</summary>
     /// <param name="matchResultFactoryProvider">Provides factories of <see cref="IArgumentPatternMatchResult{TMatchedArgument}"/>.</param>
-    public NonNullableObjectArgumentPatternFactory(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    public NonNullableObjectArgumentPatternFactory(
+        IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
     {
         MatchResultFactoryProvider = matchResultFactoryProvider ?? throw new ArgumentNullException(nameof(matchResultFactoryProvider));
     }
 
     IArgumentPattern<TypedConstant, object> INonNullableObjectArgumentPatternFactory.Create() => new NonNullableObjectArgumentPattern(MatchResultFactoryProvider);
 
-    private sealed class NonNullableObjectArgumentPattern : IArgumentPattern<TypedConstant, object>
+    private sealed class NonNullableObjectArgumentPattern
+        : IArgumentPattern<TypedConstant, object>
     {
         private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
 
-        public NonNullableObjectArgumentPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+        public NonNullableObjectArgumentPattern(
+            IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
         {
             MatchResultFactoryProvider = matchResultFactoryProvider;
         }
 
-        IArgumentPatternMatchResult<object> IArgumentPattern<TypedConstant, object>.TryMatch(TypedConstant argument)
+        IArgumentPatternMatchResult<object> IArgumentPattern<TypedConstant, object>.TryMatch(
+            TypedConstant argument)
         {
             if (argument.Kind is TypedConstantKind.Error)
             {
@@ -49,7 +54,8 @@ public sealed class NonNullableObjectArgumentPatternFactory : INonNullableObject
             return CreateSuccessful(value);
         }
 
-        private static (bool Success, object? Value) TryExtractValue(TypedConstant value)
+        private static (bool Success, object? Value) TryExtractValue(
+            TypedConstant value)
         {
             if (value.Kind is TypedConstantKind.Error)
             {
@@ -89,7 +95,12 @@ public sealed class NonNullableObjectArgumentPatternFactory : INonNullableObject
             return (true, arrayValues);
         }
 
-        private IArgumentPatternMatchResult<object> CreateSuccessful(object matchedArgument) => MatchResultFactoryProvider.Successful.Create(matchedArgument);
+        private IArgumentPatternMatchResult<object> CreateSuccessful(
+            object matchedArgument)
+        {
+            return MatchResultFactoryProvider.Successful.Create(matchedArgument);
+        }
+
         private IArgumentPatternMatchResult<object> CreateUnsuccessful() => MatchResultFactoryProvider.Unsuccessful.Create<object>();
     }
 }

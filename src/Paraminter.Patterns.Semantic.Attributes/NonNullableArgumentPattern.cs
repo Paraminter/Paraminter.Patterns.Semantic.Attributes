@@ -2,16 +2,19 @@
 
 using Microsoft.CodeAnalysis;
 
-internal sealed class NonNullableArgumentPattern<T> : IArgumentPattern<TypedConstant, T>
+internal sealed class NonNullableArgumentPattern<T>
+    : IArgumentPattern<TypedConstant, T>
 {
     private readonly IArgumentPatternMatchResultFactoryProvider MatchResultFactoryProvider;
 
-    public NonNullableArgumentPattern(IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
+    public NonNullableArgumentPattern(
+        IArgumentPatternMatchResultFactoryProvider matchResultFactoryProvider)
     {
         MatchResultFactoryProvider = matchResultFactoryProvider;
     }
 
-    IArgumentPatternMatchResult<T> IArgumentPattern<TypedConstant, T>.TryMatch(TypedConstant argument)
+    IArgumentPatternMatchResult<T> IArgumentPattern<TypedConstant, T>.TryMatch(
+        TypedConstant argument)
     {
         if (argument.Kind is TypedConstantKind.Error)
         {
